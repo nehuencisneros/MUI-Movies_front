@@ -1,16 +1,11 @@
-import React from 'react';
-import './App.css';
-import { Button, Container } from '@mui/material';
-import { NavBar } from './common/NavBar';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouter } from './Router';
 
 function App() {
   return (
-    <div>
-      <NavBar/>
-      <Container sx={{mt: 10}} maxWidth="xl">
-        <Button variant='outlined'>Login</Button>
-      </Container>
-    </div>
+    <BrowserRouter>
+      <AppRouter></AppRouter>
+    </BrowserRouter>
   );
 }
 
