@@ -5,9 +5,10 @@ type ThemeProp = {
     children: JSX.Element;
 };
 
-enum themePalette{
+export enum themePalette{
     BG = "#12181b",
-    BlueElec = "#172DE2"
+    BlueElec = "#172DE2",
+    FONT_GLOBAL = 'Bebas Neue'
 }
 
 const theme = createTheme({
@@ -19,7 +20,20 @@ const theme = createTheme({
         primary:{
             main: themePalette.BlueElec,
         }
-
+    },
+    typography:{
+        fontFamily: themePalette.FONT_GLOBAL,
+    },
+    components:{
+        MuiButton:{
+            defaultProps:{
+                style:{
+                    textTransform: "none",
+                    boxShadow: "none",
+                    borderRadius: "0.5em"
+                }
+            }
+        }
     }
 });
 

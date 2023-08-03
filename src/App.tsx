@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
 import { Button, Container } from '@mui/material';
+import { NavBar } from './common/NavBar';
 
 function App() {
   return (
-    <Container maxWidth="xl">
-      <text>TEMA DE FONDO</text>
-    </Container>
+    <div>
+      <NavBar/>
+      <Container sx={{mt: 10}} maxWidth="xl">
+        <Button variant='outlined'>Login</Button>
+      </Container>
+    </div>
   );
 }
 
