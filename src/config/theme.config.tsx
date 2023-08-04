@@ -8,7 +8,10 @@ type ThemeProp = {
 export enum themePalette{
     BG = "#12181b",
     BlueElec = "#0066ff",
-    FONT_GLOBAL = 'Bebas Neue'
+    FONT_GLOBAL = 'Bebas Neue',
+
+    ERROR_MAIN ="#f44336",
+    BG_ERROR_MAIN = "rgba(244,67,54,0.1)"
 }
 
 const theme = createTheme({
@@ -31,6 +34,20 @@ const theme = createTheme({
                     textTransform: "none",
                     boxShadow: "none",
                     borderRadius: "0.5em"
+                }
+            }
+        },
+        MuiAlert:{
+            defaultProps:{
+                style:{
+                    borderRadius: "0.5em",
+                    fontSize: "2em"
+                }
+            },
+            styleOverrides:{
+                standardError:{
+                    border: "1px solid" + themePalette.ERROR_MAIN,
+                    background: themePalette.BG_ERROR_MAIN
                 }
             }
         }
