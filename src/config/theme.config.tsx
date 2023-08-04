@@ -7,7 +7,7 @@ type ThemeProp = {
 
 export enum themePalette{
     BG = "#12181b",
-    BlueElec = "#172DE2",
+    BlueElec = "#0066ff",
     FONT_GLOBAL = 'Bebas Neue'
 }
 

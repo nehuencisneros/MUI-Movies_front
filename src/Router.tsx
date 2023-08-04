@@ -9,8 +9,8 @@ export const AppRouter: React.FC<{}> = () => {
         <Routes>
             <Route path="/" element={<RouterLayout />}>
                 <Route path="/" element={<HomeView />} />
-                <Route path="/login" element={<LoginView />} />
             </Route>
+            <Route path="/login" element={<LoginView />} />
         </Routes>
     )
 }
