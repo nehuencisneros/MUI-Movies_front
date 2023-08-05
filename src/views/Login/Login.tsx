@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material"
+import { useNotification } from "../../context/notification.context";
+import { LoginValidate } from "../../utils/validateForm";
 
 type loginForm = {
     email: string,
@@ -7,7 +9,7 @@ type loginForm = {
 }
 
 export const LoginView: React.FC<{}> = () => {
-
+    const { getError, getSuccess } = useNotification()
     const [form, setForm] = useState<loginForm>({
         email:"",
         password:""
@@ -23,7 +25,9 @@ export const LoginView: React.FC<{}> = () => {
 
     const handleSubmmit = (event: any)=> {
         event.preventDefault();
-        console.log(form)
+        LoginValidate.validate(form).then(()=>{
+            getSuccess(JSON.stringify(form))
+        }).catch((error)=>{ getError(error.message)})
     }
 
 
@@ -47,7 +51,7 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Email" 
                                 sx={{ mt: 1, mb: 1 }} 
-                                required 
+                            
                                 onChange={handleForm}
                             />
                             <TextField 
@@ -57,7 +61,7 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Password" 
                                 sx={{ mt: 1, mb: 1 }} 
-                                required 
+                            
                                 onChange={handleForm}
                             />
                             <Button 
