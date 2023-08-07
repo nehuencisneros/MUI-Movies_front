@@ -1,14 +1,19 @@
 import React from "react";
 import { Card, CardContent, Typography, CardMedia, CardActions, Button, Divider } from "@mui/material";
 
+type CardProps = {
+    image: string, 
+    title: string, 
+    overview: string
+}
 
-export const CardComponent: React.FC<{image: string, title: string, overview: string}> = ({image, title, overview}) => {
+export const CardComponent: React.FC<CardProps> = ({image, title, overview}) => {
     
     return(
-        <Card sx={{maxWidth:450}}>
+        <Card sx={{maxWidth:300}}>
             <CardMedia 
                 component="img"
-                height="300"
+                height="200"
                 image={image}
             />
             <CardContent sx={{ flexGrow: 1 }}>

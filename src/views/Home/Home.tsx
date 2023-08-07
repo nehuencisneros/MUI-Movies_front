@@ -35,7 +35,7 @@ export const HomeView: React.FC<{}> = () => {
     })
 
     useEffect (() => {
-        console.log(movies)
+
     },[])
 
 
@@ -45,10 +45,11 @@ export const HomeView: React.FC<{}> = () => {
                 title="Movies From Nehuen" 
                 description="la descripcion"
             />
-            <Grid container spacing={3}>
+            <Grid container spacing={4} direction="row" justifyContent="center">
                 { movies.length > 0 && 
-                    movies.map((movie:any)=>
-                        <Grid item direction="column">
+                    movies.map((movie:TypeMovies)=>
+
+                        <Grid item >
                             <CardComponent
                                 key={movie.id}
                                 title={movie.title}
