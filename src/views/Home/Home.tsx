@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid } from "@mui/material"
+import { Box, Container, Divider, Grid, LinearProgress, Pagination } from "@mui/material"
+
 import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
@@ -19,33 +20,73 @@ interface TypeMovies {
 
 export const HomeView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
-    const moviesState = useAppSelector(state => state.movies.movies)
+    const moviesState: TypeMovies[] = useAppSelector(state => state.movies.movies)
+    //loading
+    const [loading, setLoading] = React.useState<boolean>(true)
+    const [progress, setProgress] = React.useState<number>(0);
+    
+    //paginado
+    const [currentPage, setCurrentPage] = React.useState<number>(1);
+    const [moviesPage, setMoviesPage] = React.useState<number>(20);
+    const indexLastMovie = currentPage * moviesPage;
+    const indexFirstMovie = indexLastMovie - moviesPage;
+    const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
+    const cantPages = Math.ceil(moviesState.length/moviesPage)
 
-    useEffect(()=>{
-        dispatch(getMovies())
-    },[dispatch])
+    useEffect(() => {
+        dispatch(getMovies());
+
+        const timer = setTimeout(() => { setLoading(false) }, 2000); // Retraso de 2 segundos
+        const interval = setInterval(() => {
+            setProgress(oldProgress => {
+                if (oldProgress === 100) return 0;
+                const diff = Math.random() * 18;
+                return Math.min(oldProgress + diff, 100);
+            })}, 100);
+        return () => {clearTimeout(timer); clearInterval(interval) }
+    }, [dispatch]);
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setCurrentPage(value)
+    }
     
     return(
-        <Container sx={{mt: 5}} maxWidth="xl" >
+        <Container sx={{mt: 2}} maxWidth="xl" >
             <Header 
                 title="Movies From Nehuen" 
                 description="la descripcion"
             />
-            <Grid container spacing={4} direction="row" justifyContent="center">
-                { moviesState.length > 0 && 
-                    moviesState.map((movie:TypeMovies)=>
+            <Divider/>
+            { loading ? (
+                <Box sx={{ width: '100%', mt: 10 }}>
+                    <LinearProgress variant="determinate" value={progress} />
+                </Box>
+            ) : (
+                <div>
+                    <Grid sx={{my:2}} container spacing={4} direction="row" justifyContent="center">
+                        { currentMoviesPage.length > 0 && 
+                            currentMoviesPage.map((movie:TypeMovies)=>
 
-                        <Grid item >
-                            <CardComponent
-                                key={movie.id}
-                                title={movie.title}
-                                image={movie.image}
-                                overview={movie.overview}
-                            />
-                        </Grid>
-                    )
-                }
-            </Grid>            
+                                <Grid item >
+                                    <CardComponent
+                                        key={movie.id}
+                                        title={movie.title}
+                                        image={movie.image}
+                                        overview={movie.overview}
+                                    />
+                                </Grid>
+                                
+                            )
+                        }
+                    </Grid>
+                    <Divider/>
+                    <Box sx={{width: "100%", display: "flex", justifyContent: "center", my: 2}}>
+                        <Pagination count={cantPages} page={currentPage} onChange={handleChange}  size="large" variant="outlined" shape="rounded" />
+                    </Box>
+                </div>
+            )
+            }
+                        
         </Container>
     )
 }

@@ -17,12 +17,13 @@ export const CardComponent: React.FC<CardProps> = ({image, title, overview}) => 
                 image={image}
             />
             <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h4"  height={100}>
-                    {title}
+                <Typography variant="h4"  height={100} >
+
+                    {title.length > 40 ? title.slice(0,40) + "..." : title}
                 </Typography>
                 <Divider/>
                 <Typography variant="body2" color="text.secondary" mt={2} height={100}>
-                    {overview}
+                    {overview.length > 250 ? overview.slice(0,250) + "..." : overview}
                 </Typography>
             </CardContent>
         </Card>
