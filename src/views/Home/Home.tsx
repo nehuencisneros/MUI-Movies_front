@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Grid } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
-import { moviesdb } from "../../api/movies";
+import { getMovies } from "../../redux/slices/moviesSlice"
+import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 
 interface TypeMovies {
     id: number;
@@ -17,28 +18,13 @@ interface TypeMovies {
 }
 
 export const HomeView: React.FC<{}> = () => {
-    const [ movies, setMovies ] = useState<TypeMovies[]>([])
+    const dispatch = useAppDispatch()
+    const moviesState = useAppSelector(state => state.movies.movies)
 
-    moviesdb.map((movie: any) => {
-        const newMovie = {
-                id : movie.id,
-                title: movie.title,
-                overview: movie.overview ? movie.overview : "no overview",
-                adult: movie.adult,
-                lenguaje: movie.original_language,
-                image: "https://www.themoviedb.org/t/p/original" + movie.backdrop_path,
-                poster: movie.poster_path,
-                rating: movie.vote_average,
-                release_date: movie.release_date,
-        }
-        movies.push(newMovie)
-    })
-
-    useEffect (() => {
-
-    },[])
-
-
+    useEffect(()=>{
+        dispatch(getMovies())
+    },[dispatch])
+    
     return(
         <Container sx={{mt: 5}} maxWidth="xl" >
             <Header 
@@ -46,8 +32,8 @@ export const HomeView: React.FC<{}> = () => {
                 description="la descripcion"
             />
             <Grid container spacing={4} direction="row" justifyContent="center">
-                { movies.length > 0 && 
-                    movies.map((movie:TypeMovies)=>
+                { moviesState.length > 0 && 
+                    moviesState.map((movie:TypeMovies)=>
 
                         <Grid item >
                             <CardComponent
