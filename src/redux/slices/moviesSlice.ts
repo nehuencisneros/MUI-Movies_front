@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from "axios";
-import { log } from 'console';
 
 interface TypeMovies {
   id: number;
@@ -19,14 +18,14 @@ interface MoviesState {
   loading: boolean,
   error: string | null;
   movies: TypeMovies[];
-  movie: TypeMovies;
+  movie: TypeMovies[];
 }
 
 const initialState: MoviesState = {
   loading: false,
   error:"",
   movies: [],
-  movie: {  id: 0, title: "", overview:"", adult: false, lenguaje:"", image:"", poster:"", rating: 0, release_date:"",}
+  movie: []
 }
 
 export const moviesSlice = createSlice({
@@ -57,7 +56,7 @@ export const moviesSlice = createSlice({
         state.loading = false;
         state.error = action.payload.message;
       }, 
-      getMovieByIdSucces: (state, action) => {
+      getMovieByIdSucces: (state, action: PayloadAction<TypeMovies[]>) => {
         return{
           ...state,
           loading: false,
@@ -100,14 +99,14 @@ export const getMovies = () => async (dispatch: any) => {
 }
 
 export const getMovieById = (id:number) => async (dispatch: any) => {
-  console.log("entre getMovieById")
+
   try {
     const response = await axios.get("http://localhost:3001/movies/"+ id)
-    console.log("entre try")
+
     if(response.data){
       const {data} = response
   
-      const movieData: TypeMovies  = {
+      const movieData: TypeMovies[]  = [{
               id: data.id,
               title: data.title,
               overview: data.overview,
@@ -117,13 +116,11 @@ export const getMovieById = (id:number) => async (dispatch: any) => {
               poster: "https://www.themoviedb.org/t/p/original" + data.poster_path,
               rating: data.vote_average,
               release_date: data.release_date,
-          }
-          console.log(movieData)
+          }]
       dispatch(getMovieByIdSucces(movieData))
     }
-    throw Error
   } catch (error) {
-    console.log("entre catch")
+
     dispatch(getMovieByIdError(error as Error));
   }
 }

@@ -4,35 +4,23 @@ import { Box, Container, Grid, LinearProgress } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
 import { getMovieById } from "../../redux/slices/moviesSlice";
 import { useSelector } from "react-redux";
-import { useAppSelector } from "../../redux/hooks";
-
-
-interface TypeMovies {
-    id: number;
-    title: string;
-    overview: string;
-    adult: boolean;
-    lenguaje: string;
-    image: string;
-    poster: string;
-    rating: number;
-    release_date: string;
-}
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export const DetailView: React.FC<{}> = () => {
-    const movie = useAppSelector(state => state.movies.movie)
+    const dispatch = useAppDispatch()
+    const movie = useAppSelector(state => state.movies.movie[0])
+
     //loading
     const progress = useProgressBar();
     const loading = useLoadingBar();
 
-    let { id } = useParams()
+    let params = useParams()
     
-    const parseId = Number(id)
-    
+    const id = Number(params.id)
+
     useEffect(()=>{
-        console.log(parseId)
-        getMovieById(parseId)
-    },[])
+        dispatch(getMovieById(id))
+    },[id])
 
     return(
         <Box sx={{width: "100%"}}>
