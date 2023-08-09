@@ -11,7 +11,7 @@ export const NavBar: React.FC<{}> = () => {
                     <Container maxWidth="xl">
                         <Grid container direction="row" justifyContent="space-between" alignItems="center">
                             <Grid item>
-                                <Typography>Rick and Morty</Typography>
+                                <Typography>Movies Stack</Typography>
                             </Grid>
                             <Grid item>
                                 <Stack spacing={2} direction={"row"}>

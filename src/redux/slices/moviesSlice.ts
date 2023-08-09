@@ -17,13 +17,15 @@ interface TypeMovies {
 interface MoviesState {
   loading: boolean,
   error: string | null;
-  movies: TypeMovies[]
+  movies: TypeMovies[];
+  movie: TypeMovies[];
 }
 
 const initialState: MoviesState = {
   loading: false,
   error:"",
-  movies: []
+  movies: [],
+  movie: []
 }
 
 export const moviesSlice = createSlice({
@@ -73,7 +75,6 @@ export const getMovies = () => async (dispatch: any) => {
         }
         moviesdb.push(newMovie)
     })
-    console.log(moviesdb)
 
     dispatch(getMoviesSucces(moviesdb))
   } catch (error) {

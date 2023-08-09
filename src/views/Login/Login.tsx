@@ -16,18 +16,17 @@ export const LoginView: React.FC<{}> = () => {
     })
 
     const handleForm = (event:any) => {
-        
         setForm({
             ...form,
             [event.target.name]: event.target.value
         })
     }
 
-    const handleSubmmit = (event: any)=> {
+    const handleSubmmit = (event: React.ChangeEvent<unknown>) => {
         event.preventDefault();
-        LoginValidate.validate(form).then(()=>{
-            getSuccess(JSON.stringify(form))
-        }).catch((error)=>{ getError(error.message)})
+        LoginValidate.validate(form)
+            .then(()=>{getSuccess(JSON.stringify(form))})
+            .catch((error)=>{ getError(error.message)})
     }
 
 
@@ -51,7 +50,6 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Email" 
                                 sx={{ mt: 1, mb: 1 }} 
-                            
                                 onChange={handleForm}
                             />
                             <TextField 
@@ -61,7 +59,6 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Password" 
                                 sx={{ mt: 1, mb: 1 }} 
-                            
                                 onChange={handleForm}
                             />
                             <Button 

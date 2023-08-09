@@ -27,7 +27,7 @@ export const HomeView: React.FC<{}> = () => {
     
     //paginado
     const [currentPage, setCurrentPage] = React.useState<number>(1);
-    const [moviesPage, setMoviesPage] = React.useState<number>(20);
+    const [moviesPage, setMoviesPage] = React.useState<number>(12);
     const indexLastMovie = currentPage * moviesPage;
     const indexFirstMovie = indexLastMovie - moviesPage;
     const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
@@ -44,7 +44,7 @@ export const HomeView: React.FC<{}> = () => {
                 return Math.min(oldProgress + diff, 100);
             })}, 100);
         return () => {clearTimeout(timer); clearInterval(interval) }
-    }, [dispatch]);
+    }, [currentPage]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setCurrentPage(value)
@@ -81,7 +81,7 @@ export const HomeView: React.FC<{}> = () => {
                     </Grid>
                     <Divider/>
                     <Box sx={{width: "100%", display: "flex", justifyContent: "center", my: 2}}>
-                        <Pagination count={cantPages} page={currentPage} onChange={handleChange}  size="large" variant="outlined" shape="rounded" />
+                        <Pagination count={cantPages} page={currentPage} onChange={handleChange} color="primary" size="large" variant="outlined" shape="rounded" />
                     </Box>
                 </div>
             )
