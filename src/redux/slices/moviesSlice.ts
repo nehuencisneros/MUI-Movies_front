@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from "axios";
+import { log } from 'console';
 
 interface TypeMovies {
   id: number;
@@ -18,14 +19,14 @@ interface MoviesState {
   loading: boolean,
   error: string | null;
   movies: TypeMovies[];
-  movie: TypeMovies[];
+  movie: TypeMovies;
 }
 
 const initialState: MoviesState = {
   loading: false,
   error:"",
   movies: [],
-  movie: []
+  movie: {  id: 0, title: "", overview:"", adult: false, lenguaje:"", image:"", poster:"", rating: 0, release_date:"",}
 }
 
 export const moviesSlice = createSlice({
@@ -47,11 +48,27 @@ export const moviesSlice = createSlice({
           error: null,
           movies: action.payload
         }
+      },
+      getMovieByIdStart: (state:MoviesState) => {
+        state.loading = true;
+        state.error = null;
+      },
+      getMovieByIdError: (state, action:PayloadAction<Error>) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      }, 
+      getMovieByIdSucces: (state, action) => {
+        return{
+          ...state,
+          loading: false,
+          error: null,
+          movie: action.payload
+        }
       }
   }
 })
 
-export const { getMoviesStart, getMoviesError, getMoviesSucces } = moviesSlice.actions
+export const { getMoviesStart, getMoviesError, getMoviesSucces, getMovieByIdSucces, getMovieByIdError, getMovieByIdStart } = moviesSlice.actions
 
 export default moviesSlice.reducer;
 
@@ -82,7 +99,34 @@ export const getMovies = () => async (dispatch: any) => {
   }
 }
 
-
+export const getMovieById = (id:number) => async (dispatch: any) => {
+  console.log("entre getMovieById")
+  try {
+    const response = await axios.get("http://localhost:3001/movies/"+ id)
+    console.log("entre try")
+    if(response.data){
+      const {data} = response
+  
+      const movieData: TypeMovies  = {
+              id: data.id,
+              title: data.title,
+              overview: data.overview,
+              adult: data.adult,
+              lenguaje: data.original_language,
+              image: "https://www.themoviedb.org/t/p/original/" + data.backdrop_path,
+              poster: "https://www.themoviedb.org/t/p/original" + data.poster_path,
+              rating: data.vote_average,
+              release_date: data.release_date,
+          }
+          console.log(movieData)
+      dispatch(getMovieByIdSucces(movieData))
+    }
+    throw Error
+  } catch (error) {
+    console.log("entre catch")
+    dispatch(getMovieByIdError(error as Error));
+  }
+}
 
 
 

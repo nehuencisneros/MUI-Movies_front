@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { Box, Container, Grid, LinearProgress } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
+import { getMovieById } from "../../redux/slices/moviesSlice";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
+
 
 interface TypeMovies {
     id: number;
@@ -17,36 +20,20 @@ interface TypeMovies {
 }
 
 export const DetailView: React.FC<{}> = () => {
-    const [movie, setMovie] = useState<TypeMovies | null>(null)
+    const movie = useAppSelector(state => state.movies.movie)
     //loading
     const progress = useProgressBar();
     const loading = useLoadingBar();
 
-    const { id } = useParams()
-
-    const getbyid = async (id:any) => {
-        const response = await axios.get("http://localhost:3001/movies/"+ id)
-        const {data} = response
-        setMovie({
-            id: data.id,
-            title: data.title,
-            overview: data.overview,
-            adult: data.adult,
-            lenguaje: data.original_language,
-            image: "https://www.themoviedb.org/t/p/original/" + data.backdrop_path,
-            poster: "https://www.themoviedb.org/t/p/original" + data.poster_path,
-            rating: data.vote_average,
-            release_date: data.release_date,
-        })
-        console.log(data.poster_path)
-        console.log(data.backdrop_path)
-    }
-
+    let { id } = useParams()
     
-
+    const parseId = Number(id)
+    
     useEffect(()=>{
-        getbyid(id)
+        console.log(parseId)
+        getMovieById(parseId)
     },[])
+
     return(
         <Box sx={{width: "100%"}}>
             <Container maxWidth="xl">
@@ -55,11 +42,12 @@ export const DetailView: React.FC<{}> = () => {
                         <LinearProgress variant="determinate" value={progress} />
                     </Box>
                 ) : (
-                    <Grid container>
-                        <Grid item>
-                            <img src={movie?.image}/>
+                    <Grid container display="flex" sx={{mt:3}}>
+                        <Grid item xs={6}>
+                            <img src={movie?.image} style={{width:"100%"}}/>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={6}>
+
                         </Grid>
                     </Grid>
                 )
