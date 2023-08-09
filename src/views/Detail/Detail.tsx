@@ -52,16 +52,34 @@ export const DetailView: React.FC<{}> = () => {
                                     }}
                                 />
                             )}
-                            <Grid item sx={{
-                                position: 'absolute',
-                                top: '50%',
-                                transform: 'translate(-50%, -50%)', // Centra el contenido
-                                ml: 70,
-                                display: 'flex',
-                                flexDirection: 'column',
-                            }}>
-                                <Typography variant="h1">{movieSelector.title}</Typography>
-                                <Typography variant="h5">{movieSelector.overview}</Typography>
+                            <Grid
+                                item
+                                sx={{
+                                    position: 'absolute',
+                                    top: '50%',
+                                    transform: 'translate(-50%, -50%)', // Centra el contenido
+                                    ml: 65,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                                >
+                                <div
+                                    style={{
+                                    width: 'fit-content',
+                                    marginLeft: "0" 
+                                    }}
+                                >
+                                    <Typography
+                                    variant="h1"
+                                    align="center"
+                                    sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 10, padding: 3,}}
+                                    >
+                                    {movieSelector.title}
+                                    </Typography>
+                                </div>
+                                <Typography variant="h5" mt={2}>
+                                    {movieSelector.overview}
+                                </Typography>
                             </Grid>
                         </Box>
                     </Grid>

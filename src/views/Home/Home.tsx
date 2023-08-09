@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Box, Container, Divider, Grid, LinearProgress, Pagination } from "@mui/material"
+import { Box, CardActionArea, Container, Divider, Grid, LinearProgress, Pagination } from "@mui/material"
 import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { useProgressBar, useLoadingBar } from "../loading";
+import { useNavigate } from "react-router-dom";
 
 interface TypeMovies {
     id: number;
@@ -33,6 +34,8 @@ export const HomeView: React.FC<{}> = () => {
     const indexFirstMovie = indexLastMovie - moviesPage;
     const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
     const cantPages = Math.ceil(moviesState.length/moviesPage)
+    
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(getMovies());
@@ -59,16 +62,16 @@ export const HomeView: React.FC<{}> = () => {
                         <Grid sx={{my:2}} container spacing={4} direction="row" justifyContent="center">
                             { currentMoviesPage.length > 0 && 
                                 currentMoviesPage.map((movie:TypeMovies)=>
-
                                     <Grid item key={movie.id} >
+                                        <CardActionArea component="a" onClick={()=>navigate("/movie/"+ movie.id)}>
                                         <CardComponent
                                             key={movie.id}
                                             title={movie.title}
                                             image={movie.image}
                                             overview={movie.overview}
                                         />
+                                        </CardActionArea>
                                     </Grid>
-                                    
                                 )
                             }
                         </Grid>

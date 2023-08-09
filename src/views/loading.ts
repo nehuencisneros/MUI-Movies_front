@@ -26,7 +26,7 @@ export const useLoadingBar = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1900);
 
     return () => clearTimeout(timer);
   }, []);
