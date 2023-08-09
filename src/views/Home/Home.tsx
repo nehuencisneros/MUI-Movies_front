@@ -5,6 +5,8 @@ import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { boolean } from "yup";
+import { useProgressBar, useLoadingBar } from "../loading";
 
 interface TypeMovies {
     id: number;
@@ -22,8 +24,8 @@ export const HomeView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
     const moviesState: TypeMovies[] = useAppSelector(state => state.movies.movies)
     //loading
-    const [loading, setLoading] = React.useState<boolean>(true)
-    const [progress, setProgress] = React.useState<number>(0);
+    const progress = useProgressBar();
+    const loading = useLoadingBar();
     
     //paginado
     const [currentPage, setCurrentPage] = React.useState<number>(1);
@@ -36,14 +38,6 @@ export const HomeView: React.FC<{}> = () => {
     useEffect(() => {
         dispatch(getMovies());
 
-        const timer = setTimeout(() => { setLoading(false) }, 2000); // Retraso de 2 segundos
-        const interval = setInterval(() => {
-            setProgress(oldProgress => {
-                if (oldProgress === 100) return 0;
-                const diff = Math.random() * 18;
-                return Math.min(oldProgress + diff, 100);
-            })}, 100);
-        return () => {clearTimeout(timer); clearInterval(interval) }
     }, [currentPage]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {

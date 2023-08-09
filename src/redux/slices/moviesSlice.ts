@@ -67,10 +67,10 @@ export const getMovies = () => async (dispatch: any) => {
             title: movie.title,
             overview: movie.overview ? movie.overview : "no overview",
             adult: movie.adult,
-            lenguaje: movie.original_language,
+            lenguaje: movie.lenguaje,
             image: "https://www.themoviedb.org/t/p/original" + movie.image,
-            poster: movie.poster_path,
-            rating: movie.vote_average,
+            poster: movie.poster,
+            rating: movie.rating,
             release_date: movie.release_date,
         }
         moviesdb.push(newMovie)
