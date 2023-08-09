@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Container, Grid, LinearProgress } from "@mui/material";
+import { Box, Container, Divider, Grid, LinearProgress, Typography } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
 import { getMovieById } from "../../redux/slices/moviesSlice";
-import { useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export const DetailView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
-    const movie = useAppSelector(state => state.movies.movie[0])
+    const movieSelector = useAppSelector(state => state.movies.movie[0])
 
     //loading
     const progress = useProgressBar();
@@ -20,23 +19,51 @@ export const DetailView: React.FC<{}> = () => {
 
     useEffect(()=>{
         dispatch(getMovieById(id))
-    },[id])
+    },[dispatch,id])
 
     return(
-        <Box sx={{width: "100%"}}>
+        <Box >
             <Container maxWidth="xl">
                 { loading ? (
                     <Box sx={{ width: '100%', mt: 10 }}>
                         <LinearProgress variant="determinate" value={progress} />
                     </Box>
                 ) : (
-                    <Grid container display="flex" sx={{mt:3}}>
-                        <Grid item xs={6}>
-                            <img src={movie?.image} style={{width:"100%"}}/>
-                        </Grid>
-                        <Grid item xs={6}>
-
-                        </Grid>
+                    <Grid container>
+                        <Box
+                            sx={{
+                            position: 'relative',
+                            width: '100%',
+                            height: 0,
+                            paddingTop: '56.25%',
+                            }}
+                        >
+                            {movieSelector && (
+                                <img
+                                    src={movieSelector.image}
+                                    alt={movieSelector.title}
+                                    style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover',
+                                    }}
+                                />
+                            )}
+                            <Grid item sx={{
+                                position: 'absolute',
+                                top: '50%',
+                                transform: 'translate(-50%, -50%)', // Centra el contenido
+                                ml: 70,
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}>
+                                <Typography variant="h1">{movieSelector.title}</Typography>
+                                <Typography variant="h5">{movieSelector.overview}</Typography>
+                            </Grid>
+                        </Box>
                     </Grid>
                 )
                 }

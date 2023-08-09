@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Box, Container, Divider, Grid, LinearProgress, Pagination } from "@mui/material"
 import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import { boolean } from "yup";
 import { useProgressBar, useLoadingBar } from "../loading";
 
 interface TypeMovies {
@@ -29,7 +28,7 @@ export const HomeView: React.FC<{}> = () => {
     
     //paginado
     const [currentPage, setCurrentPage] = React.useState<number>(1);
-    const [moviesPage, setMoviesPage] = React.useState<number>(8);
+    const [moviesPage] = React.useState<number>(8);
     const indexLastMovie = currentPage * moviesPage;
     const indexFirstMovie = indexLastMovie - moviesPage;
     const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
@@ -38,7 +37,7 @@ export const HomeView: React.FC<{}> = () => {
     useEffect(() => {
         dispatch(getMovies());
 
-    }, [currentPage]);
+    }, [dispatch, currentPage]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setCurrentPage(value)
@@ -61,7 +60,7 @@ export const HomeView: React.FC<{}> = () => {
                             { currentMoviesPage.length > 0 && 
                                 currentMoviesPage.map((movie:TypeMovies)=>
 
-                                    <Grid item >
+                                    <Grid item key={movie.id} >
                                         <CardComponent
                                             key={movie.id}
                                             title={movie.title}
