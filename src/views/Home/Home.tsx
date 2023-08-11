@@ -5,7 +5,7 @@ import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { useProgressBar, useLoadingBar } from "../loading";
-import { useNavigate } from "react-router-dom";
+
 
 interface TypeMovies {
     id: number;
@@ -35,11 +35,10 @@ export const HomeView: React.FC<{}> = () => {
     const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
     const cantPages = Math.ceil(moviesState.length/moviesPage)
     
-    const navigate = useNavigate()
+
 
     useEffect(() => {
         dispatch(getMovies());
-
     }, [dispatch, currentPage]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -63,14 +62,13 @@ export const HomeView: React.FC<{}> = () => {
                             { currentMoviesPage.length > 0 && 
                                 currentMoviesPage.map((movie:TypeMovies)=>
                                     <Grid item key={movie.id} >
-                                        <CardActionArea component="a" onClick={()=>navigate("/movie/"+ movie.id)}>
                                         <CardComponent
                                             key={movie.id}
+                                            id={movie.id}
                                             title={movie.title}
                                             image={movie.image}
                                             overview={movie.overview}
                                         />
-                                        </CardActionArea>
                                     </Grid>
                                 )
                             }
