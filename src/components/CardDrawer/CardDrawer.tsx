@@ -17,7 +17,7 @@ export const CardDrawer: React.FC <CardDrawerProps> = ({ id, image, title, ratin
         <Card>
             <CardMedia
                 component="img"
-                sx={{ width: 151 }}
+                sx={{ width: 150 }}
                 image={image}
                 alt={title}
             />

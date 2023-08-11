@@ -60,7 +60,7 @@ export const HomeView: React.FC<{}> = () => {
                     <div>
                         <Grid sx={{my:2}} container spacing={4} direction="row" justifyContent="center">
                             { currentMoviesPage.length > 0 && 
-                                currentMoviesPage.map((movie:TypeMovies)=>
+                                currentMoviesPage.map((movie:TypeMovies) =>
                                     <Grid item key={movie.id} >
                                         <CardComponent
                                             key={movie.id}

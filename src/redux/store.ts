@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import moviesReducer from "./slices/moviesSlice"
+import drawerReducer from "./slices/drawerSlice"
 
 
 export const store = configureStore({
   reducer:{
-    movies: moviesReducer
+    movies: moviesReducer,
+    drawer: drawerReducer
   }
 })
 

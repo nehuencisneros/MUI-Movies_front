@@ -39,12 +39,7 @@ export const CardComponent: React.FC<CardProps> = ({id,image, title, overview}) 
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button
-                fullWidth
-                variant="outlined"
-                size="small"
-                onClick={handleAddToCart}
-                >
+                <Button fullWidth variant="outlined" size="small" onClick={handleAddToCart}>
                 Add to see
                 </Button>
             </CardActions>
