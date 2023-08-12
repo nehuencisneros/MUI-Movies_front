@@ -32,9 +32,9 @@ export const CardDrawer: React.FC <CardDrawerProps> = ({ id, image, title, ratin
                     image={image}
                     alt={title}
                 />
-                <CardContent>
-                    <Typography variant="h6" >Rating</Typography>
-                    <Typography variant="h6" >{rating}</Typography>
+                <CardContent >
+                    <Typography variant="h6" sx={{}}>Rating</Typography>
+                    <Typography variant="h6" sx={{ ml: 1.5}} >{rating}</Typography>
                 </CardContent>
             </Box>
         </Card>

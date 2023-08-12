@@ -38,9 +38,9 @@ export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, r
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Button fullWidth variant="outlined" size="small" onClick={handleAddToCart}>
-                Add to see
+                    Add to see
                 </Button>
             </CardActions>
         </Card>
