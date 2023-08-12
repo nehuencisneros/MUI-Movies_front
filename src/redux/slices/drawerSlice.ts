@@ -25,8 +25,8 @@ export const drawerSlice = createSlice({
       }
     },
     removeToSee:(state, action:PayloadAction<number>) => {
-      
-      console.log(action.payload)
+      const id = action.payload
+      return state = state.filter((item)=> item.id !== id)
     }
   }
 })
