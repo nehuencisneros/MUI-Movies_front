@@ -23,11 +23,15 @@ export const drawerSlice = createSlice({
       ) {
         state.push(action.payload);
       }
+    },
+    removeToSee:(state, action:PayloadAction<number>) => {
+      
+      console.log(action.payload)
     }
   }
 })
 
-export const { addToSee } = drawerSlice.actions
+export const { addToSee, removeToSee } = drawerSlice.actions
 
 export default drawerSlice.reducer;
 
