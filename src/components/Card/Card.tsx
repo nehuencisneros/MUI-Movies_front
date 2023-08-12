@@ -2,22 +2,22 @@ import React from "react";
 import { Card, CardContent, CardActionArea, Typography, CardMedia, CardActions, Button, Divider, Box } from "@mui/material";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
+import { addToSee } from "../../redux/slices/drawerSlice" 
 
 type CardProps = {
     id: number,
     image: string, 
     title: string, 
-    overview: string
+    overview: string,
+    rating: number
 }
 
-export const CardComponent: React.FC<CardProps> = ({id,image, title, overview}) => {
+export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, rating}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
 
     const handleAddToCart = () => {
-
-        console.log({ image, title })
-        //dispatch(addToSee({ id, image, title, rating }));
+        dispatch(addToSee({ id, image, title, rating }));
     };
 
     return(

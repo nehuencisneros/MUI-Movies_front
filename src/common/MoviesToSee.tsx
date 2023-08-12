@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { useAppSelector } from "../redux/hooks";
+import { CardDrawer } from "../components/CardDrawer/CardDrawer";
 
 interface ReviewProps {
     open: boolean;
@@ -8,7 +10,10 @@ interface ReviewProps {
 }
 
 export const MoviesToSee: React.FC<ReviewProps> = ({open, handleDrawer}) => {
-    
+    const toSee = useAppSelector(state => state.drawer)
+
+
+
     return(
         <Drawer anchor={'right'} open={open}>
             <Box sx={{ width: '25em', p: 2 }}>
@@ -23,6 +28,18 @@ export const MoviesToSee: React.FC<ReviewProps> = ({open, handleDrawer}) => {
                     </IconButton>
                     </Stack>
                     <Divider sx={{ my: 1.5 }} />
+                    {   toSee.length > 0 &&
+                            toSee.map(({id, image, title, rating}) => (
+                                <CardDrawer
+                                    key={id}
+                                    id={id}
+                                    image={image}
+                                    title={title}
+                                    rating={rating}
+                                />
+                            )
+                        )
+                    }
                 </Box>
         </Drawer>
     )

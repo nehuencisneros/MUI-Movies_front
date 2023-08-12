@@ -68,6 +68,7 @@ export const HomeView: React.FC<{}> = () => {
                                             title={movie.title}
                                             image={movie.image}
                                             overview={movie.overview}
+                                            rating={movie.rating}
                                         />
                                     </Grid>
                                 )
