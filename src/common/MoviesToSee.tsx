@@ -16,7 +16,7 @@ export const MoviesToSee: React.FC<ReviewProps> = ({open, handleDrawer}) => {
 
     return(
         <Drawer anchor={'right'} open={open}>
-            <Box sx={{ width: '25em', p: 2 }}>
+            <Box sx={{ width: '23em', p: 2 }}>
                     <Stack
                     direction="row"
                     justifyContent="space-between"

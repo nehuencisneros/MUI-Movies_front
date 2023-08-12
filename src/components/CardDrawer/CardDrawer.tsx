@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardActions, CardContent, Typography, CardMedia, Divider, Grid, IconButton } from "@mui/material";
+import { Card, CardActions, CardContent, Typography, CardMedia, Divider, Grid, IconButton, Box } from "@mui/material";
 import { useAppDispatch } from '../../redux/hooks';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
@@ -15,29 +15,28 @@ export const CardDrawer: React.FC <CardDrawerProps> = ({ id, image, title, ratin
     const dispatch = useAppDispatch();
 
     return(
-        <Card>
-            <CardMedia
-                component="img"
-                sx={{ width: 150 }}
-                image={image}
-                alt={title}
-            />
-            <Grid container sx={{ mx: 1 }}>
-                <Grid item xs={9}>
-                <CardContent>
-                    <Typography variant="h4">{title}</Typography>
-                    <Divider />
-                    <Typography variant="h5">{rating}</Typography>
-                </CardContent>
-                </Grid>
-                <Grid item xs={2}>
+        <Card sx={{ mt: 1 }}>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Typography variant="h5" ml="2%">{title}</Typography>
                 <CardActions>
                     <IconButton>
-                    <CloseRoundedIcon />
+                        <CloseRoundedIcon />
                     </IconButton>
                 </CardActions>
-                </Grid>
-            </Grid>
+            </Box>
+            <Divider />
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+                <CardMedia
+                    component="img"
+                    sx={{ width: 250, my: 1, ml: "2%" }}
+                    image={image}
+                    alt={title}
+                />
+                <CardContent>
+                    <Typography variant="h6" >Rating</Typography>
+                    <Typography variant="h6" >{rating}</Typography>
+                </CardContent>
+            </Box>
         </Card>
     )
 }
