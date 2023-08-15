@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import * as React from "react";
 import { styled, alpha } from '@mui/material/styles';
@@ -6,18 +6,18 @@ import InputBase from '@mui/material/InputBase';
 
 type HeaderProps = {
     title: string,
-
 }
 
-export const Header: React.FC<HeaderProps> = ({title }) => {
+export const Header: React.FC<HeaderProps> = ({ title }) => {
+    const [ searchValue, setSearchValue ] = React.useState("")
+
+
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
+        '&:hover': { backgroundColor: alpha(theme.palette.common.white, 0.25)},
         marginRight: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
@@ -40,18 +40,28 @@ export const Header: React.FC<HeaderProps> = ({title }) => {
         color: 'inherit',
         '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
             paddingLeft: `calc(1em + ${theme.spacing(4)})`,
             transition: theme.transitions.create('width'),
             width: '100%',
             [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
+            width: '20ch',
+            '&:focus': { width: '40ch'},
             },
         },
     }));
+
+    React.useEffect(()=> {
+
+    },[searchValue])
+
+    const handlerSearch = (event:any) => {
+        console.log(event.target.value)
+
+    }
+
+    const handleSubmit = () => {
+        console.log(searchValue)
+    }
 
     return(
         <div>
@@ -64,19 +74,21 @@ export const Header: React.FC<HeaderProps> = ({title }) => {
                 sx={{height:'100%'}}
                 >
                     <Grid item>
-                            <Grid item>
-                                <Typography sx={{marginLeft:3.2}} variant="h2">{title}</Typography>
-                            </Grid>
+                        <Typography sx={{marginLeft:3}} variant="h2">{title}</Typography>
                     </Grid>
-                    <Search>
-                        <SearchIconWrapper>
-                        <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                        placeholder="Search…"
-                        inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
+
+                        <Search>
+                            <SearchIconWrapper >
+                            <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+
+                                onChange={handlerSearch}
+                            />
+                        </Search>
+
                 </Grid>
             </Box>
         </div>

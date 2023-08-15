@@ -22,7 +22,7 @@ export const LoginView: React.FC<{}> = () => {
         })
     }
 
-    const handleSubmmit = (event: React.ChangeEvent<unknown>) => {
+    const handleSubmit = (event: React.ChangeEvent<unknown>) => {
         event.preventDefault();
         LoginValidate.validate(form)
             .then(()=>{getSuccess(JSON.stringify(form))})
@@ -42,7 +42,7 @@ export const LoginView: React.FC<{}> = () => {
                 <Grid item>
                     <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
                         <Typography variant="h4" sx={{mb: 1 }} >Iniciar sesión</Typography>
-                        <Box component="form" onSubmit={handleSubmmit}>
+                        <Box component="form" onSubmit={handleSubmit}>
                             <TextField 
                                 name="email"
                                 fullWidth 
