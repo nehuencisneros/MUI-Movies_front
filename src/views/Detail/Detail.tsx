@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Container, Divider, Grid, LinearProgress, Typography } from "@mui/material";
+import { Box, Card, Container, Divider, Grid, LinearProgress, Stack, Typography } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
 import { getMovieById } from "../../redux/slices/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { CardDrawer } from "../../components/CardDrawer/CardDrawer";
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { CardReview } from "../../components/CardReview/CardReview";
 
 export const DetailView: React.FC<{}> = () => {
@@ -14,15 +15,15 @@ export const DetailView: React.FC<{}> = () => {
     //loading
     const progress = useProgressBar();
     const loading = useLoadingBar();
-
+    
     let params = useParams()
     
     const id = Number(params.id)
-
+    
     useEffect(()=>{
         dispatch(getMovieById(id))
     },[dispatch,id])
-
+    
     const props = [{
         id: "647760aad3719700f9cad266",
         author:"garethmb",
@@ -34,8 +35,8 @@ export const DetailView: React.FC<{}> = () => {
     },{
         id: "647e0f700fb39801180e8f4b",
         author:"garManuel São Bentoethmb",
-        content:"FULL SPOILER-FREE REVIEW @ https://www.firstshowing.net/2023/review-spider-man-across-the-spider-verse-is-an-animated-work-of-art/\r\n\r\n\"Spider-Man: Across the Spider-Verse is the epitome of incredibly detailed, gorgeously unique, undeniably epic animation within its medium. Separately from enjoying this movie or not, any or all cinephiles should bow to the ridiculously talented artists and animators behind this pure work of art.\r\n\r\nThat said, the attributes and issues are more or less the same as the original. The various animation styles are overwhelmingly stunning, but also to the point of creating confusing moments. Gwen Stacy stands out from the rest of the pack – both the character and Hailee Steinfeld's voice performance – but everyone on screen is impressively captivating. The voice cast is superb all-around.\r\n\r\nAn unfinished story – remember, this is the first of two parts – about what it really means to be a hero. The 140-minute runtime isn't exactly heavy, but the necessity to resort to exposition scenes is more frequent than in the previous flick, even though the narrative complexity ends up justifying this.\r\n\r\nA must-see movie in the cinema! Go support animation.\"\r\n\r\n\r\nRating: A-"
-        },
+        content:"Spider-Man: Across the Spider-Verse is the epitome of incredibly detailed, gorgeously unique, undeniably epic animation within its medium. Separately from enjoying this movie or not, any or all cinephiles should bow to the ridiculously talented artists and animators behind this pure work of art.\r\n\r\nThat said, the attributes and issues are more or less the same as the original. The various animation styles are overwhelmingly stunning, but also to the point of creating confusing moments. Gwen Stacy stands out from the rest of the pack – both the character and Hailee Steinfeld's voice performance – but everyone on screen is impressively captivating. The voice cast is superb all-around.\r\n\r\nAn unfinished story – remember, this is the first of two parts – about what it really means to be a hero. The 140-minute runtime isn't exactly heavy, but the necessity to resort to exposition scenes is more frequent than in the previous flick, even though the narrative complexity ends up justifying this.\r\n\r\nA must-see movie in the cinema! Go support animation.\"\r\n\r\n\r\nRating: A-"
+    },
     {
         id: "64cca1752f266b09ef121de5",
         author: "Louisa Moore - Screen Zealots",
@@ -45,9 +46,9 @@ export const DetailView: React.FC<{}> = () => {
         id: "648238bad2b20900ca1dc5c2",
         author: "Chris Sawin",
         content: "And perhaps _Beyond the Spider-Verse_ will retroactively make Across’ story more enjoyable, but for now, the franchise’s flashy visuals are fully in controls of its web-shooters.\r\n\r\nAs a stand alone feature, _Across the Spider-Verse_ is groundbreaking with its half-a-dozen animation styles and plethora of Spider-Men. The Spot is an insanely cool villain, Spider-Man 2099 is an anti-hero teetering on the verge of becoming a full-time villain, and Spider-Punk oozes overall awesomeness.\r\n\r\nBut with the film sitting at 162 minutes and a sequel on the way in less than a year, the story ultimately feels like it’s stretched beyond its means.\r\n\r\n**Full review:** https://boundingintocomics.com/2023/06/07/spider-man-across-the-spider-verse-review-a-stunning-labyrinthine-benchmark-for-animation/"
-    }
-    ]
+    }]
 
+    
     return(
         <Box >
             <Container maxWidth="xl">
@@ -66,9 +67,7 @@ export const DetailView: React.FC<{}> = () => {
                             }}
                         >
                             {movieSelector && (
-                                <img
-                                    src={movieSelector.image}
-                                    alt={movieSelector.title}
+                                <img src={movieSelector.image} alt={movieSelector.title}
                                     style={{
                                     position: 'absolute',
                                     top: 0,
@@ -79,30 +78,24 @@ export const DetailView: React.FC<{}> = () => {
                                     }}
                                 />
                             )}
-                            <Grid
-                                item
+                            <Grid item
                                 sx={{
                                     position: 'absolute',
-                                    top: '50%',
-                                    transform: 'translate(-50%, -50%)', // Centra el contenido
-                                    ml: 65,
-                                    display: 'flex',
-                                    flexDirection: 'column',
+                                    top: '15%',
+                                    flexDirection: 'column', 
+                                    border: "solid 1px red",
+                                    paddingInline:1.5
                                 }}
                                 >
-                                <div
-                                    style={{
-                                    width: 'fit-content',
-                                    marginLeft: "0" 
+                                <div>
+                                    <Typography variant="h1" align="center"
+                                    sx={{ 
+                                        width: 'fit-content',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+                                        borderRadius: 10, 
+                                        padding: 2,
                                     }}
-                                >
-                                    <Typography
-                                    variant="h1"
-                                    align="center"
-                                    sx={{ backgroundColor: 'rgba(0, 0, 0, 0.3)', borderRadius: 10, padding: 3,}}
-                                    >
-                                    {movieSelector.title}
-                                    </Typography>
+                                    >{movieSelector.title}</Typography>
                                 </div>
                                 <Typography variant="h5" mt={2}>
                                     {movieSelector.overview}
@@ -110,23 +103,38 @@ export const DetailView: React.FC<{}> = () => {
                             </Grid>
                         </Box>
                         { props.length > 0 && 
-                            <Grid container spacing={4} direction="row" justifyContent="center">
-                                {
-                                    props.map( (data) => 
-                                    <Grid item display="flex" key={data.id}>
-                                        <CardReview
-                                            id={data.id}
-                                            author={data.author}
-                                            content={data.content}
-                                        />
-                                    </Grid>
-                                    )
-                                }
+                            <Grid container sx={{justifyContent:"center"}}>
+                                <Typography variant="h4" mt={3}>Reviews :</Typography>
+                                <Divider/>
+
+                                    <div style={{}}>
+                                        <Carousel showThumbs={false}>
+{/* 
+                                            {props.map((data) => (
+                                                <Grid item 
+                                                    sx={{mb:4, 
+                                                        justifyContent:"center" , 
+                                                        paddingInline:5,
+                                                        paddingBottom:2,
+                                                        width: '25rem',
+                                                    }} key={data.id}>
+
+                                                    <CardReview
+                                                        id={data.id}
+                                                        author={data.author}
+                                                        content={data.content}
+                                                    />
+                                                </Grid>
+                                            ))} */}
+
+                                        </Carousel>
+                                    </div>
+
                             </Grid>
                         }
                     </Grid>
                 )
-                }
+            }
             </Container>
         </Box>
     )

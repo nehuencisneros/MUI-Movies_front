@@ -15,16 +15,15 @@ export const NavBar: React.FC<{}> = () => {
         <Box sx={{flexGrow: 1 }}>
             <AppBar position="sticky">
                 <Toolbar>
-                    <Container maxWidth="xl">
+                    <Container maxWidth="xl" sx={{my:2}}>
                         <Grid container direction="row" justifyContent="space-between" alignItems="center">
                             <Grid item>
-                                <Button variant="text" onClick={()=>navigate("/")}>Movies Stack</Button>
+                                <Button  variant="text" onClick={()=>navigate("/")}>Movies Stack</Button>
                             </Grid>
                             <Grid item>
-                                <Stack spacing={2} direction={"row"}>
-                                    <Button variant="contained" onClick={()=>handleDrawer()}>Movies To See</Button>
-                                    <Button variant="contained" onClick={()=>navigate("login")}>Login</Button>
-                                    <Button variant="outlined">Register</Button>
+                                <Stack spacing={1} direction={"row"}>
+                                    <Button sx={{paddingInline:"10px"}} variant="contained" onClick={()=>handleDrawer()}>Movies To See</Button>
+                                    <Button sx={{paddingInline:"10px"}} variant="outlined">Sing In</Button>
                                 </Stack>
                             </Grid>
                         </Grid>

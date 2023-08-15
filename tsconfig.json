@@ -19,8 +19,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
-  },
-  "include": [
-    "src"
-  ]
+  },  
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "node_modules/react-responsive-carousel"]
 }
