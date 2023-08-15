@@ -49,7 +49,6 @@ export const HomeView: React.FC<{}> = () => {
         <Container sx={{mt: 2}} maxWidth="xl" >
             <Header 
                 title="Movies From Nehuen" 
-                description="la descripcion"
             />
             <Divider/>
             { loading ? (

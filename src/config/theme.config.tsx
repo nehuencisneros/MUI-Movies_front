@@ -29,25 +29,46 @@ const theme = createTheme({
     typography:{
         fontFamily: themePalette.FONT_GLOBAL,
         h1:{
-            fontSize: '2rem', // Default font size
-            '@media (min-width:600px)': {
-              fontSize: '4rem', // Adjust font size for medium screens
+            fontSize: '1.6rem', // Default font size
+            '@media (min-width:520px)': {
+                fontSize: '2.2rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:720px)': {
+                fontSize: '3.15rem', // Adjust font size for medium screens
             },
             '@media (min-width:960px)': {
+              fontSize: '4.4rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:1280px)': {
               fontSize: '6rem', // Adjust font size for large screens
             },
         },
-        h5:{
-            fontSize: '0.8rem', // Default font size
+        h2:{
+            fontSize: '1rem', // Default font size
             '@media (min-width:600px)': {
-              fontSize: '1.3rem', // Adjust font size for medium screens
+              fontSize: '2rem', // Adjust font size for medium screens
             },
             '@media (min-width:960px)': {
-              fontSize: '1.9rem', // Adjust font size for large screens
+              fontSize: '4rem', // Adjust font size for large screens
+            },
+        },
+        h5:{
+            fontSize: '0.5rem', // Default font size
+            '@media (min-width:520px)': {
+                fontSize: '0.80rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:720px)': {
+                fontSize: '1.15rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:960px)': {
+                fontSize: '1.65rem', // Adjust font size for large screens
+            },
+            '@media (min-width:1280px)': {
+              fontSize: '2rem', // Adjust font size for large screens
             },
         },
         button:{
-            fontSize: '0.6rem',
+            fontSize: '0.8rem',
             // Default font size
             '@media (min-width:400px)': {
                 fontSize: '0.8rem', // Adjust font size for medium screens

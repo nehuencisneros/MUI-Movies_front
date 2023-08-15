@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { CardReview } from "../../components/CardReview/CardReview";
+import style from "./Detail.module.css"
 
 export const DetailView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
@@ -58,35 +59,18 @@ export const DetailView: React.FC<{}> = () => {
                     </Box>
                 ) : (
                     <Grid container>
-                        <Box
-                            sx={{
-                            position: 'relative',
-                            width: '100%',
-                            height: 0,
-                            paddingTop: '56.25%',
-                            }}
-                        >
+                        <Box sx={{ position: 'relative', width: '100%', height: 0, paddingTop: '56.25%', }}>
                             {movieSelector && (
                                 <img src={movieSelector.image} alt={movieSelector.title}
                                     style={{
                                     position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    width: '100%',
-                                    height: '100%',
+                                    top: 0, left: 0,
+                                    width: '100%', height: '100%',
                                     objectFit: 'cover',
                                     }}
                                 />
                             )}
-                            <Grid item
-                                sx={{
-                                    position: 'absolute',
-                                    top: '15%',
-                                    flexDirection: 'column', 
-                                    border: "solid 1px red",
-                                    paddingInline:1.5
-                                }}
-                                >
+                            <Grid item sx={{ position: 'absolute', top: '15%', flexDirection: 'column', }}>
                                 <div>
                                     <Typography variant="h1" align="center"
                                     sx={{ 
@@ -94,10 +78,15 @@ export const DetailView: React.FC<{}> = () => {
                                         backgroundColor: 'rgba(0, 0, 0, 0.3)', 
                                         borderRadius: 10, 
                                         padding: 2,
+                                        marginInline:2
                                     }}
                                     >{movieSelector.title}</Typography>
                                 </div>
-                                <Typography variant="h5" mt={2}>
+                                <Typography variant="h5" mt={2} sx={{ 
+                                        width: 'fit-content',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.15)', 
+                                        padding: 2,
+                                    }}>
                                     {movieSelector.overview}
                                 </Typography>
                             </Grid>
@@ -109,7 +98,7 @@ export const DetailView: React.FC<{}> = () => {
 
                                     <div style={{}}>
                                         <Carousel showThumbs={false}>
-{/* 
+
                                             {props.map((data) => (
                                                 <Grid item 
                                                     sx={{mb:4, 
@@ -125,7 +114,7 @@ export const DetailView: React.FC<{}> = () => {
                                                         content={data.content}
                                                     />
                                                 </Grid>
-                                            ))} */}
+                                            ))}
 
                                         </Carousel>
                                     </div>
