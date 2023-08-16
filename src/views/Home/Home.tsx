@@ -6,7 +6,6 @@ import { getMovies } from "../../redux/slices/moviesSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { useProgressBar, useLoadingBar } from "../loading";
 
-
 interface TypeMovies {
     id: number;
     title: string;
@@ -35,8 +34,6 @@ export const HomeView: React.FC<{}> = () => {
     const currentMoviesPage = moviesState.slice(indexFirstMovie, indexLastMovie);   
     const cantPages = Math.ceil(moviesState.length/moviesPage)
     
-
-
     useEffect(() => {
         dispatch(getMovies());
     }, [dispatch, currentPage]);
@@ -46,7 +43,7 @@ export const HomeView: React.FC<{}> = () => {
     }
     
     return(
-        <Container sx={{mt: 2}} maxWidth="xl" >
+        <Container  maxWidth="xl" >
             <Header 
                 title="Movies From Nehuen" 
             />
