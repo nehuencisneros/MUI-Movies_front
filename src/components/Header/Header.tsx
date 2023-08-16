@@ -17,36 +17,35 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
 
     const handleSubmit = (event:any) => {
         event.preventDefault();
-        // Aquí puedes realizar acciones basadas en el valor de búsqueda (searchValue)
         console.log('Search submitted:', searchValue);
-        // También podrías llamar a una función de búsqueda aquí
         setSearchValue("");
     };
     
     return(
 
-            <Box sx={{ width: '100%', alignItems:"center", padding:2}}>
+            <Box sx={{ width: '100%', padding:2}}>
                 <form onSubmit={handleSubmit}>
                     <Box
                         display="flex"
+                        flexDirection={{ xs: 'column', md: 'row' }}
                         alignItems="center"
                         justifyContent="space-between"
                         height="100%"
                     >
-                        <Typography sx={{ marginLeft: 2 }} variant="h2">
+                        <Typography sx={{ marginLeft: 2 }} variant="h1">
                         {title}
                         </Typography>
-                        <Box display="flex" alignItems="center"  >
-                            <TextField sx={{width: "15rem", marginInline:1}}
+                        <Box display="flex" alignItems="center" sx={{width: "20rem",marginRight: 2}}  >
+                        <Button type="submit">
+                        </Button>
+                            <TextField sx={{ marginRight:1, width: "15rem"}}
                                 size="small"
                                 label="Search"
                                 variant="outlined"
                                 value={searchValue}
                                 onChange={handleSearchChange}
                             />
-                            <SearchIcon />
-                        <Button type="submit">
-                        </Button>
+                            <SearchIcon sx={{marginRight:1}}/>
                         </Box>
                     </Box>
                 </form>
