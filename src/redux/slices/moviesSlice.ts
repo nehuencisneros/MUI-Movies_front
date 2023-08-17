@@ -1,18 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from "axios";
-
-interface TypeMovies {
-  id: number;
-  title: string;
-  overview: string;
-  adult: boolean;
-  lenguaje: string;
-  image: string;
-  poster: string;
-  rating: number;
-  release_date: string;
-}
+import { TypeMovies } from '../../types/Types';
 
 interface MoviesState {
   loading: boolean,
@@ -40,7 +29,7 @@ export const moviesSlice = createSlice({
         state.loading = false;
         state.error = action.payload.message;
       },
-      getMoviesSucces: (state, action: PayloadAction<TypeMovies[]>) => {
+      getMoviesSuccess: (state, action: PayloadAction<TypeMovies[]>) => {
         return{
           ...state,
           loading: false,
@@ -56,7 +45,7 @@ export const moviesSlice = createSlice({
         state.loading = false;
         state.error = action.payload.message;
       }, 
-      getMovieByIdSucces: (state, action: PayloadAction<TypeMovies[]>) => {
+      getMovieByIdSuccess: (state, action: PayloadAction<TypeMovies[]>) => {
         return{
           ...state,
           loading: false,
@@ -67,7 +56,7 @@ export const moviesSlice = createSlice({
   }
 })
 
-export const { getMoviesStart, getMoviesError, getMoviesSucces, getMovieByIdSucces, getMovieByIdError, getMovieByIdStart } = moviesSlice.actions
+export const { getMoviesStart, getMoviesError, getMoviesSuccess, getMovieByIdSuccess, getMovieByIdError, getMovieByIdStart } = moviesSlice.actions
 
 export default moviesSlice.reducer;
 
@@ -92,7 +81,7 @@ export const getMovies = () => async (dispatch: any) => {
         moviesdb.push(newMovie)
     })
 
-    dispatch(getMoviesSucces(moviesdb))
+    dispatch(getMoviesSuccess(moviesdb))
   } catch (error) {
     dispatch(getMoviesError(error as Error));
   }
@@ -117,7 +106,7 @@ export const getMovieById = (id:number) => async (dispatch: any) => {
               rating: data.vote_average,
               release_date: data.release_date,
           }]
-      dispatch(getMovieByIdSucces(movieData))
+      dispatch(getMovieByIdSuccess(movieData))
     }
   } catch (error) {
 

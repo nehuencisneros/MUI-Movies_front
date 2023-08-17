@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import moviesReducer from "./slices/moviesSlice"
 import drawerReducer from "./slices/drawerSlice"
+import searchSlice from "./slices/searchSlice";
 
 
 export const store = configureStore({
   reducer:{
     movies: moviesReducer,
-    drawer: drawerReducer
+    drawer: drawerReducer,
+    search: searchSlice,
   }
 })
 

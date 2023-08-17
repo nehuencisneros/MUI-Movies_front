@@ -10,7 +10,7 @@ interface CardReviewProps {
 
 export const CardReview: React.FC <CardReviewProps> = ({ id, author, content}) => {
 
-    const dispatch = useAppDispatch();
+
 
     return(
         <Card sx={{ 

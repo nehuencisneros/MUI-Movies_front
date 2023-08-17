@@ -1,6 +1,8 @@
 import { Box, Typography, TextField, Button, Grid, Toolbar,  } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import * as React from "react";
+import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../redux/hooks";
 
 
 type HeaderProps = {
@@ -8,6 +10,8 @@ type HeaderProps = {
 }
 
 export const Header: React.FC<HeaderProps> = ({ title }) => {
+    
+    const dispatch = useAppDispatch();
 
     const [searchValue, setSearchValue] = React.useState('');
 
