@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardActionArea, Typography, CardMedia, CardActions, Button, Divider, Box } from "@mui/material";
+import { Card, CardContent, CardActionArea, Typography, CardMedia, CardActions, Button, Divider, Box, Rating } from "@mui/material";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { addToSee } from "../../redux/slices/drawerSlice" 
@@ -22,6 +22,7 @@ export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, r
 
     return(
         <Card sx={{ maxWidth: 300 }} >
+            <Rating sx={{marginLeft:"60%"}} name={`rating-${id}`} value={(rating/2)} precision={0.01} readOnly />
             <CardActionArea component="a" onClick={()=>navigate("/movie/"+ id)} >
                 <CardMedia 
                     component="img"

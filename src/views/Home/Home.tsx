@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, CardActionArea, Container, Divider, Grid, LinearProgress, Pagination } from "@mui/material"
+import { Box, CardActionArea, Container, Divider, Grid, LinearProgress, Pagination, Rating } from "@mui/material"
 import { Header } from "../../components/Header/Header";
 import { CardComponent } from "../../components/Card/Card";
 import { getMovies } from "../../redux/slices/moviesSlice"
