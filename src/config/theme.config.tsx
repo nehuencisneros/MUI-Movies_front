@@ -54,17 +54,35 @@ const theme = createTheme({
         },
         h5:{
             fontSize: '0.5rem', // Default font size
-            '@media (min-width:520px)': {
-                fontSize: '0.80rem', // Adjust font size for medium screens
+            '@media (min-width:400px)': {
+                fontSize: '0.7rem', // Adjust font size for medium screens
             },
-            '@media (min-width:720px)': {
-                fontSize: '1.15rem', // Adjust font size for medium screens
+            '@media (min-width:600px)': {
+                fontSize: '1rem', // Adjust font size for medium screens
             },
-            '@media (min-width:960px)': {
+            '@media (min-width:800px)': {
+                fontSize: '1.3rem', // Adjust font size for large screens
+            },
+            '@media (min-width:1000px)': {
                 fontSize: '1.65rem', // Adjust font size for large screens
             },
             '@media (min-width:1280px)': {
               fontSize: '2rem', // Adjust font size for large screens
+            },
+        },
+        h6:{
+            fontSize: '0.4rem', // Default font size
+            '@media (min-width:520px)': {
+                fontSize: '0.60rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:720px)': {
+                fontSize: '0.9.rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:960px)': {
+                fontSize: '1.2rem', // Adjust font size for large screens
+            },
+            '@media (min-width:1280px)': {
+              fontSize: '1.5rem', // Adjust font size for large screens
             },
         },
         button:{

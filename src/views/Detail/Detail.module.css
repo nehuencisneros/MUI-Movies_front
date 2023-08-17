@@ -1,13 +1,4 @@
-.title {
-    width: 'fit-content';
-    background-color: 'rgba(0, 0, 0, 0.3)';
-    border-radius: 10;
-    padding: 2;
-    margin-inline:2; 
-}
-
-.overview{
-    width: 'fit-content';
-    background-color: 'rgba(0, 0, 0, 0.15)';
-    padding: 2; 
+.carousel{
+    width: 98%;
+    margin-inline: 1%;
 }

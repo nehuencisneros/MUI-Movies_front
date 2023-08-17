@@ -22,7 +22,7 @@ export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, r
 
     return(
         <Card sx={{ maxWidth: 300 }} >
-            <Rating sx={{marginLeft:"60%"}} name={`rating-${id}`} value={(rating/2)} precision={0.01} readOnly />
+            <Rating  size="small" sx={{marginLeft:"68%", marginTop: "5px"}} name={`rating-${id}`} value={(rating/2)} precision={0.01} readOnly />
             <CardActionArea component="a" onClick={()=>navigate("/movie/"+ id)} >
                 <CardMedia 
                     component="img"

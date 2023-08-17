@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
     
     return(
 
-            <Box sx={{ width: '100%', padding:2}}>
+            <Box sx={{ width: '100%', padding:1}}>
                 <form onSubmit={handleSubmit}>
                     <Box
                         display="flex"

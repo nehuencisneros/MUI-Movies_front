@@ -70,55 +70,43 @@ export const DetailView: React.FC<{}> = () => {
                                     }}
                                 />
                             )}
-                            <Grid item sx={{ position: 'absolute', top: '15%', flexDirection: 'column', }}>
+                            <Grid item sx={{ position: 'absolute', top: '12%', flexDirection: 'column', }}>
                                 <div>
                                     <Typography variant="h1" align="center"
                                     sx={{ 
                                         width: 'fit-content',
                                         backgroundColor: 'rgba(0, 0, 0, 0.3)', 
                                         borderRadius: 10, 
-                                        padding: 2,
-                                        marginInline:2
+                                        padding: "1%",
+                                        marginInline: '2%'
                                     }}
                                     >{movieSelector.title}</Typography>
                                 </div>
                                 <Typography variant="h5" mt={2} sx={{ 
                                         width: 'fit-content',
                                         backgroundColor: 'rgba(0, 0, 0, 0.15)', 
-                                        padding: 2,
+                                        padding: '1%',
                                     }}>
                                     {movieSelector.overview}
                                 </Typography>
                             </Grid>
                         </Box>
                         { props.length > 0 && 
-                            <Grid container sx={{justifyContent:"center"}}>
-                                <Typography variant="h4" mt={3}>Reviews :</Typography>
+                            <Grid container sx={{ backgroundColor: '#292f31'}}>
+                                <Typography variant="h4" mt={3} ml={2}>Reviews :</Typography>
                                 <Divider/>
-
-                                    <div style={{}}>
-                                        <Carousel showThumbs={false}>
-
-                                            {props.map((data) => (
-                                                <Grid item 
-                                                    sx={{mb:4, 
-                                                        justifyContent:"center" , 
-                                                        paddingInline:5,
-                                                        paddingBottom:2,
-                                                        width: '25rem',
-                                                    }} key={data.id}>
-
-                                                    <CardReview
-                                                        id={data.id}
-                                                        author={data.author}
-                                                        content={data.content}
-                                                    />
-                                                </Grid>
-                                            ))}
-
-                                        </Carousel>
-                                    </div>
-
+                                <Carousel showThumbs={false} className={style.carousel}>
+                                    {props.map((data, index) => (
+                                        <Grid item sx={{mb:5, paddingInline:5}} key={index}>
+                                            <CardReview
+                                                id={data.id}
+                                                author={data.author}
+                                                content={data.content}
+                                            />
+                                        </Grid>
+                                        ))
+                                    }
+                                </Carousel>
                             </Grid>
                         }
                     </Grid>
