@@ -36,7 +36,7 @@ export const HomeView: React.FC<{}> = () => {
     
     useEffect(() => {
         dispatch(getMovies());
-    }, [dispatch, currentPage]);
+    }, [currentPage]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setCurrentPage(value)

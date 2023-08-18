@@ -62,7 +62,12 @@ export const moviesSlice = createSlice({
         state.error = action.payload.message;
       },
       searchMoviesSuccess: ( state, action: PayloadAction<TypeMovies[]> ) => {
-  
+        return{
+          ...state,
+          loading: false,
+          error: null,
+          movies: action.payload
+        }
       }
   }
 })
@@ -136,42 +141,10 @@ export const getMovieById = (id:number) => async (dispatch: any) => {
 
 export const searchMovies = (searchValue: string) => async (dispatch: any) => {
   try {
-    const moviesdb:TypeMovies[] = []
-
-    const options = {
-      url: `https://api.themoviedb.org/3/search/person?query=${searchValue}&include_adult=false&language=en-US&page=1`,
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMGIwYzEyYmQ2YWM0ODRlNmNmYWNhM2Q2YjUyYWQ0MCIsInN1YiI6IjY0YzI5NDZkMmYxYmUwMDBjYTI3N2EwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6jO__kDB0393fGoG_J1UwqwK14MxLZJOuIUDWFsORqM'
-      }
-    };
-
-    const response = await axios.request(options)
-        .then(function (res:any){return res})
-        .catch(function (err:any) {return (err)});
-
-    const {data} = response
-
-    await data.results.map((element:any) => {
-      element.known_for.map((movie:any)=> {
-        const dato:TypeMovies = {
-          id : movie.id,
-          title: movie.title,
-          overview: movie.overview ? movie.overview : "no overview",
-          adult: movie.adult,
-          lenguaje: movie.lenguaje,
-          backdrop_path: movie.backdrop_path ?  "https://www.themoviedb.org/t/p/original" + movie.backdrop_path : "https://www.themoviedb.org/t/p/original" + movie.poster_path,
-          poster_path: movie.poster_path,
-          rating: movie.vote_average,
-          release_date: movie.release_date,
-        }
-        dato.title && moviesdb.push(dato) 
-      })
-  })
-  console.log(moviesdb);
-  
-    dispatch(getMoviesSuccess(moviesdb))
+    const response = await axios.get('http://localhost:3001/movies/search/' + searchValue)
+    
+    const moviesFind = response.data
+    dispatch(searchMoviesSuccess(moviesFind))
   } catch (error) {
     dispatch(searchMoviesError(error as Error));
   }

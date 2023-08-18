@@ -1,15 +1,17 @@
 import { Box, Typography, TextField, Button } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import * as React from "react";
+import  React from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { searchMovies } from "../../redux/slices/moviesSlice";
-
+import { useNavigate } from 'react-router-dom';
 
 type HeaderProps = {
     title: string,
 }
 
 export const Header: React.FC<HeaderProps> = ({ title }) => {
+    const [currentPage, setCurrentPage] = React.useState<number>();
+    const navigate = useNavigate();
     
     const dispatch = useAppDispatch();
 
@@ -22,6 +24,8 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
     const handleSubmit = (event:any) => {
         event.preventDefault();
         dispatch(searchMovies(searchValue))
+        setCurrentPage(1)
+        navigate("/")
         setSearchValue("");
     };
     
