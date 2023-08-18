@@ -12,8 +12,8 @@ interface TypeMovies {
     overview: string;
     adult: boolean;
     lenguaje: string;
-    image: string;
-    poster: string;
+    backdrop_path: string;
+    poster_path: string;
     rating: number;
     release_date: string;
 }
@@ -62,7 +62,7 @@ export const HomeView: React.FC<{}> = () => {
                                             key={movie.id}
                                             id={movie.id}
                                             title={movie.title}
-                                            image={movie.image}
+                                            backdrop_path={movie.backdrop_path}
                                             overview={movie.overview}
                                             rating={movie.rating}
                                         />

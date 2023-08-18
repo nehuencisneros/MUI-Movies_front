@@ -10,8 +10,6 @@ interface CardReviewProps {
 
 export const CardReview: React.FC <CardReviewProps> = ({ id, author, content}) => {
 
-
-
     return(
         <Card sx={{ 
             mt: 1, 

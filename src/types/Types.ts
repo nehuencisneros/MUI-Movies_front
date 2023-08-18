@@ -4,8 +4,8 @@ export interface TypeMovies {
   overview: string;
   adult: boolean;
   lenguaje: string;
-  image: string;
-  poster: string;
+  backdrop_path: string;
+  poster_path: string;
   rating: number;
   release_date: string;
 }

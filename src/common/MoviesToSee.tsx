@@ -29,11 +29,11 @@ export const MoviesToSee: React.FC<ReviewProps> = ({open, handleDrawer}) => {
                     </Stack>
                     <Divider sx={{ my: 1.5 }} />
                     {   toSee.length > 0 &&
-                            toSee.map(({id, image, title, rating}) => (
+                            toSee.map(({id, backdrop_path, title, rating}) => (
                                 <CardDrawer
                                     key={id}
                                     id={id}
-                                    image={image}
+                                    backdrop_path={backdrop_path}
                                     title={title}
                                     rating={rating}
                                 />

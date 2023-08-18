@@ -4,7 +4,7 @@ import axios from "axios";
 
 interface DrawerState {
   id: number;
-  image: string;
+  backdrop_path: string;
   title: string;
   rating: number;
 }

@@ -6,18 +6,18 @@ import { addToSee } from "../../redux/slices/drawerSlice"
 
 type CardProps = {
     id: number,
-    image: string, 
+    backdrop_path: string, 
     title: string, 
     overview: string,
     rating: number
 }
 
-export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, rating}) => {
+export const CardComponent: React.FC<CardProps> = ({id,backdrop_path, title, overview, rating}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
 
     const handleAddToCart = () => {
-        dispatch(addToSee({ id, image, title, rating }));
+        dispatch(addToSee({ id, backdrop_path, title, rating }));
     };
 
     return(
@@ -27,7 +27,7 @@ export const CardComponent: React.FC<CardProps> = ({id,image, title, overview, r
                 <CardMedia 
                     component="img"
                     height="200"
-                    image={image}
+                    image={backdrop_path}
                 />
                 <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 'auto' }}>
                     <Typography variant="h4" align="center" height={80}>

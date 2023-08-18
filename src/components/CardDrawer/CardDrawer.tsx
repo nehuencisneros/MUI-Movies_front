@@ -6,12 +6,12 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 interface CardDrawerProps {
     id: number;
-    image: string;
+    backdrop_path: string;
     title: string;
     rating: number;
 }
 
-export const CardDrawer: React.FC <CardDrawerProps> = ({ id, image, title, rating }) => {
+export const CardDrawer: React.FC <CardDrawerProps> = ({ id, backdrop_path, title, rating }) => {
 
     const dispatch = useAppDispatch();
 
@@ -34,7 +34,7 @@ export const CardDrawer: React.FC <CardDrawerProps> = ({ id, image, title, ratin
                 <CardMedia
                     component="img"
                     sx={{ width: 250, my: 1, ml: "2%" }}
-                    image={image}
+                    image={backdrop_path}
                     alt={title}
                 />
                 <CardContent >

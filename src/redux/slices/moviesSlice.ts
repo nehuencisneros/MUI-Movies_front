@@ -52,11 +52,31 @@ export const moviesSlice = createSlice({
           error: null,
           movie: action.payload
         }
+      },
+      searchMoviesStart: (state: MoviesState ) => {
+        state.loading = true;
+        state.error = null;
+      },
+      searchMoviesError: (state, action: PayloadAction<Error> ) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      },
+      searchMoviesSuccess: ( state, action: PayloadAction<TypeMovies[]> ) => {
+  
       }
   }
 })
 
-export const { getMoviesStart, getMoviesError, getMoviesSuccess, getMovieByIdSuccess, getMovieByIdError, getMovieByIdStart } = moviesSlice.actions
+export const { 
+  getMoviesStart, 
+  getMoviesError, 
+  getMoviesSuccess, 
+  getMovieByIdSuccess, 
+  getMovieByIdError, 
+  getMovieByIdStart, 
+  searchMoviesSuccess, 
+  searchMoviesError, 
+  searchMoviesStart } = moviesSlice.actions
 
 export default moviesSlice.reducer;
 
@@ -73,8 +93,8 @@ export const getMovies = () => async (dispatch: any) => {
             overview: movie.overview ? movie.overview : "no overview",
             adult: movie.adult,
             lenguaje: movie.lenguaje,
-            image: "https://www.themoviedb.org/t/p/original" + movie.image,
-            poster: movie.poster,
+            backdrop_path: "https://www.themoviedb.org/t/p/original" + movie.backdrop_path,
+            poster_path: movie.poster_path,
             rating: movie.rating,
             release_date: movie.release_date,
         }
@@ -101,8 +121,8 @@ export const getMovieById = (id:number) => async (dispatch: any) => {
               overview: data.overview,
               adult: data.adult,
               lenguaje: data.original_language,
-              image: "https://www.themoviedb.org/t/p/original/" + data.backdrop_path,
-              poster: "https://www.themoviedb.org/t/p/original" + data.poster_path,
+              backdrop_path: "https://www.themoviedb.org/t/p/original/" + data.backdrop_path,
+              poster_path: "https://www.themoviedb.org/t/p/original" + data.poster_path,
               rating: data.vote_average,
               release_date: data.release_date,
           }]
@@ -111,6 +131,49 @@ export const getMovieById = (id:number) => async (dispatch: any) => {
   } catch (error) {
 
     dispatch(getMovieByIdError(error as Error));
+  }
+}
+
+export const searchMovies = (searchValue: string) => async (dispatch: any) => {
+  try {
+    const moviesdb:TypeMovies[] = []
+
+    const options = {
+      url: `https://api.themoviedb.org/3/search/person?query=${searchValue}&include_adult=false&language=en-US&page=1`,
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMGIwYzEyYmQ2YWM0ODRlNmNmYWNhM2Q2YjUyYWQ0MCIsInN1YiI6IjY0YzI5NDZkMmYxYmUwMDBjYTI3N2EwZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6jO__kDB0393fGoG_J1UwqwK14MxLZJOuIUDWFsORqM'
+      }
+    };
+
+    const response = await axios.request(options)
+        .then(function (res:any){return res})
+        .catch(function (err:any) {return (err)});
+
+    const {data} = response
+
+    await data.results.map((element:any) => {
+      element.known_for.map((movie:any)=> {
+        const dato:TypeMovies = {
+          id : movie.id,
+          title: movie.title,
+          overview: movie.overview ? movie.overview : "no overview",
+          adult: movie.adult,
+          lenguaje: movie.lenguaje,
+          backdrop_path: movie.backdrop_path ?  "https://www.themoviedb.org/t/p/original" + movie.backdrop_path : "https://www.themoviedb.org/t/p/original" + movie.poster_path,
+          poster_path: movie.poster_path,
+          rating: movie.vote_average,
+          release_date: movie.release_date,
+        }
+        dato.title && moviesdb.push(dato) 
+      })
+  })
+  console.log(moviesdb);
+  
+    dispatch(getMoviesSuccess(moviesdb))
+  } catch (error) {
+    dispatch(searchMoviesError(error as Error));
   }
 }
 

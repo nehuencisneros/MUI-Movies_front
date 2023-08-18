@@ -61,7 +61,7 @@ export const DetailView: React.FC<{}> = () => {
                     <Grid container>
                         <Box sx={{ position: 'relative', width: '100%', height: 0, paddingTop: '56.25%', }}>
                             {movieSelector && (
-                                <img src={movieSelector.image} alt={movieSelector.title}
+                                <img src={movieSelector.backdrop_path} alt={movieSelector.title}
                                     style={{
                                     position: 'absolute',
                                     top: 0, left: 0,
