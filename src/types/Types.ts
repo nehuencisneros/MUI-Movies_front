@@ -9,3 +9,9 @@ export interface TypeMovies {
   rating: number;
   release_date: string;
 }
+
+export interface TypeReviews {
+  id: string;
+  author: string;
+  content: string;
+}

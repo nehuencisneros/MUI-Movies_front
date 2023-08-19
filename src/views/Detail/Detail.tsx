@@ -8,10 +8,12 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
 import { CardReview } from "../../components/CardReview/CardReview";
 import style from "./Detail.module.css"
+import { getRevies } from "../../redux/slices/reviewSlice";
 
 export const DetailView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
     const movieSelector = useAppSelector(state => state.movies.movie[0])
+    const reviewsSelector = useAppSelector(state => state.reviews.reviews)
 
     //loading
     const progress = useProgressBar();
@@ -22,6 +24,7 @@ export const DetailView: React.FC<{}> = () => {
     const id = Number(params.id)
     
     useEffect(()=>{
+        dispatch(getRevies(id))
         dispatch(getMovieById(id))
     },[dispatch,id])
     
@@ -91,12 +94,12 @@ export const DetailView: React.FC<{}> = () => {
                                 </Typography>
                             </Grid>
                         </Box>
-                        { props.length > 0 && 
+                        { reviewsSelector.length > 0 && 
                             <Grid container sx={{ backgroundColor: '#292f31'}}>
                                 <Typography variant="h4" mt={3} ml={2}>Reviews :</Typography>
                                 <Divider/>
                                 <Carousel showThumbs={false} className={style.carousel}>
-                                    {props.map((data, index) => (
+                                    {reviewsSelector.map((data, index) => (
                                         <Grid item sx={{mb:5, paddingInline:5}} key={index}>
                                             <CardReview
                                                 id={data.id}
