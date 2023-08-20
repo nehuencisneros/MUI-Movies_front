@@ -12,7 +12,7 @@ type CardProps = {
     rating: number
 }
 
-export const CardComponent: React.FC<CardProps> = ({id,backdrop_path, title, overview, rating}) => {
+export const CardComponent: React.FC<CardProps> = ({id, backdrop_path, title, overview, rating}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
 

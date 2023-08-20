@@ -55,6 +55,7 @@ export const getRevies = (id:number) => async (dispatch: any) => {
         id: info.id,
         author: info.author,
         content: info.content,
+        rating:info.author_details.rating,
       }
       reviewsArray.push(review)
     })

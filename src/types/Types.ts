@@ -14,4 +14,5 @@ export interface TypeReviews {
   id: string;
   author: string;
   content: string;
+  rating: number | null;
 }
