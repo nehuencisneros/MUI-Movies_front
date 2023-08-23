@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material"
 import { useNotification } from "../../context/notification.context";
 import { LoginValidate } from "../../utils/validateForm";
+import { useFormik } from "formik";
 
 type loginForm = {
     email: string,
@@ -9,27 +10,19 @@ type loginForm = {
 }
 
 export const LoginView: React.FC<{}> = () => {
-    const { getError, getSuccess } = useNotification()
-    const [form, setForm] = useState<loginForm>({
-        email:"",
-        password:""
-    })
+    const { getSuccess } = useNotification();
 
-    const handleForm = (event:any) => {
-        setForm({
-            ...form,
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const handleSubmit = (event: React.ChangeEvent<unknown>) => {
-        event.preventDefault();
-        LoginValidate.validate(form)
-            .then(()=>{getSuccess(JSON.stringify(form))})
-            .catch((error)=>{ getError(error.message)})
-    }
-
-
+    const formik = useFormik<loginForm>({
+        initialValues: {
+            email:"",
+            password: "",
+        },
+        validationSchema: LoginValidate,
+        onSubmit: (values: loginForm) => {
+            getSuccess(JSON.stringify(values))
+        }
+    });
+    
     return (
         <Container maxWidth="sm" >
             <Grid
@@ -42,7 +35,7 @@ export const LoginView: React.FC<{}> = () => {
                 <Grid item>
                     <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
                         <Typography variant="h4" sx={{mb: 1 }} >Iniciar sesión</Typography>
-                        <Box component="form" onSubmit={handleSubmit}>
+                        <Box component="form" onSubmit={formik.handleSubmit}>
                             <TextField 
                                 name="email"
                                 fullWidth 
@@ -50,7 +43,9 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Email" 
                                 sx={{ mt: 1, mb: 1 }} 
-                                onChange={handleForm}
+                                onChange={formik.handleChange}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
                             />
                             <TextField 
                                 name="password"
@@ -59,7 +54,9 @@ export const LoginView: React.FC<{}> = () => {
                                 margin="normal"
                                 label="Password" 
                                 sx={{ mt: 1, mb: 1 }} 
-                                onChange={handleForm}
+                                onChange={formik.handleChange}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
                             />
                             <Button 
                                 fullWidth 

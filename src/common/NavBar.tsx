@@ -27,7 +27,7 @@ export const NavBar: React.FC<{}> = () => {
                                     <Badge badgeContent={cantMoviesAdded} color="error">
                                         <Button sx={{paddingInline:"10px"}} variant="contained" onClick={()=>handleDrawer()}>Movies To See</Button>
                                     </Badge>
-                                    <Button sx={{paddingInline:"10px"}} variant="outlined">Sing In</Button>
+                                    <Button sx={{paddingInline:"10px"}} variant="outlined" onClick={() => navigate("login")}>Sing In</Button>
                                 </Stack>
                             </Grid>
                         </Grid>
