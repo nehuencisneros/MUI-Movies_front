@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Card, Container, Divider, Grid, LinearProgress, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Divider, Grid, Icon, LinearProgress, Typography } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
 import { getMovieById } from "../../redux/slices/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -68,6 +68,13 @@ export const DetailView: React.FC<{}> = () => {
                                     {movieSelector.overview}
                                 </Typography>
                             </Grid>
+                                <div style={{position: 'absolute', display:"flex", width:'20%',bottom: '5%', marginLeft: "80%",  }}>
+                                    <Button sx={{backgroundColor:"#fc4b08"}} color="inherit" variant="contained">
+                                        <Typography variant="h5" marginY={1}>
+                                        ADD REVIEW 
+                                        </Typography>
+                                    </Button>
+                                </div>
                         </Box>
                         { reviewsSelector.length > 0 && 
                             <Grid container sx={{ backgroundColor: '#292f31'}}>
