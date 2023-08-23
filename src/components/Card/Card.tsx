@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardActionArea, Typography, CardMedia, CardActions, Button, Divider, Box, Rating } from "@mui/material";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { addToSee } from "../../redux/slices/drawerSlice" 
 
@@ -15,6 +15,12 @@ type CardProps = {
 export const CardComponent: React.FC<CardProps> = ({id, backdrop_path, title, overview, rating}) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
+    const movieAdded = useAppSelector(state => state.drawer)
+    const [buttonDisable, setButtonDisable] = useState<boolean>(false)
+
+    useEffect(()=> {
+        movieAdded.some(item=> item.id === id) ? setButtonDisable(true) : setButtonDisable(false)
+    },[movieAdded, id])
 
     const handleAddToCart = () => {
         dispatch(addToSee({ id, backdrop_path, title, rating }));
@@ -40,7 +46,7 @@ export const CardComponent: React.FC<CardProps> = ({id, backdrop_path, title, ov
                 </CardContent>
             </CardActionArea>
             <CardActions style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button fullWidth variant="outlined" size="small" onClick={handleAddToCart}>
+                <Button fullWidth variant="outlined" size="small" onClick={handleAddToCart} disabled={buttonDisable}>
                     Add to see
                 </Button>
             </CardActions>

@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardActions, CardContent, Typography, CardMedia, Divider, Grid, IconButton, Box, Rating } from "@mui/material";
-import { useAppDispatch } from '../../redux/hooks';
+import { Card, Typography, Divider, Box, Rating } from "@mui/material";
+
 
 interface CardReviewProps {
     id: string,
@@ -14,23 +14,23 @@ export const CardReview: React.FC <CardReviewProps> = ({ id, author, content, ra
     return(
         <Card sx={{ 
             mt: 1, 
-            paddingInline: 2 ,
+            paddingInline: "8px" ,
             border: "solid 1px grey",
             backgroundColor: "#414648"
             }}>
-            <Box display={"flex"} justifyContent={"space-between"}>
+            <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} >
                 <Typography variant="h4">
                     {author}
                 </Typography>
                 { rating ? 
-                    <Box display={"flex"} alignItems={"center"} sx={{border: "solid 1px red"}}>
-                        <Typography variant="h5" sx={{marginRight:2, border: "solid 1px yellow"}}>
+                    <Box display={"flex"} alignItems={"center"} >
+                        <Typography variant="h5" sx={{marginRight:"0.5rem"}}>
                             Rating: 
                         </Typography>
-                        <Rating  size="small" sx={{border: "solid 1px blue"}} name={`rating-${id}`} value={rating} precision={0.01} readOnly />
+                        <Rating size="small" name={`rating-${id}`} value={rating} precision={0.01} readOnly />
                     </Box>
                         : 
-                    <Box display={"flex"} alignItems={"center"} sx={{border: "solid 1px red"}}> 
+                    <Box display={"flex"} alignItems={"center"}> 
                         <Typography variant="h5">
                             No rating added
                         </Typography>

@@ -51,6 +51,24 @@ const theme = createTheme({
             '@media (min-width:960px)': {
               fontSize: '4rem', // Adjust font size for large screens
             },
+        },        
+        h4:{
+            fontSize: '0.6rem', // Default font size
+            '@media (min-width:400px)': {
+                fontSize: '0.8rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:600px)': {
+                fontSize: '1.1rem', // Adjust font size for medium screens
+            },
+            '@media (min-width:800px)': {
+                fontSize: '1.35rem', // Adjust font size for large screens
+            },
+            '@media (min-width:1000px)': {
+                fontSize: '1.7rem', // Adjust font size for large screens
+            },
+            '@media (min-width:1280px)': {
+              fontSize: '2.15rem', // Adjust font size for large screens
+            },
         },
         h5:{
             fontSize: '0.5rem', // Default font size
@@ -97,7 +115,7 @@ const theme = createTheme({
             '@media (min-width:960px)': {
               fontSize: '1.5rem', // Adjust font size for large screens
             },
-        }
+        },
     },
     components:{
         MuiButton:{
