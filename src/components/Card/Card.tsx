@@ -3,6 +3,7 @@ import { Card, CardContent, CardActionArea, Typography, CardMedia, CardActions, 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { addToSee } from "../../redux/slices/drawerSlice" 
+import { setItem } from "../../utils/localStorage";
 
 type CardProps = {
     id: number,
@@ -19,7 +20,8 @@ export const CardComponent: React.FC<CardProps> = ({id, backdrop_path, title, ov
     const [buttonDisable, setButtonDisable] = useState<boolean>(false)
 
     useEffect(()=> {
-        movieAdded.some(item=> item.id === id) ? setButtonDisable(true) : setButtonDisable(false)
+        movieAdded.some(item=> item.id === id) ? setButtonDisable(true) : setButtonDisable(false);
+        setItem("drawer", movieAdded)
     },[movieAdded, id])
 
     const handleAddToCart = () => {
@@ -35,12 +37,12 @@ export const CardComponent: React.FC<CardProps> = ({id, backdrop_path, title, ov
                     height="200"
                     image={backdrop_path}
                 />
-                <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 'auto' }}>
-                    <Typography variant="h4" align="center" height={80}>
+                <CardContent sx={{flexDirection: 'column', padding: 1}}>
+                    <Typography fontSize="28px" align={"center"} height={80}>
                         {title.length > 40 ? title.slice(0, 40) + "..." : title}
                     </Typography>
                     <Divider variant="middle" />
-                    <Typography variant="body2" color="text.secondary" mt={2} height={100}>
+                    <Typography variant="body2" color="text.secondary" mt={1} height={100}>
                         {overview.length > 250 ? overview.slice(0, 250) + "..." : overview}
                     </Typography>
                 </CardContent>

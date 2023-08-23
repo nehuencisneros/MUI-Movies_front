@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ title }) => {
     return(
         <Box sx={{ width: '100%', padding:1}}>
             <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" height="100%">
+                <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between">
                     <Typography sx={{ marginLeft: 2 }} variant="h1">
                         {title}
                     </Typography>

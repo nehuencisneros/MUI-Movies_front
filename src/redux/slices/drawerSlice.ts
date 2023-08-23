@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from "axios";
+import { getItem, setItem } from '../../utils/localStorage';
 
 interface DrawerState {
   id: number;
@@ -9,7 +10,7 @@ interface DrawerState {
   rating: number;
 }
 
-const initialState: DrawerState[] = []
+const initialState: DrawerState[] = getItem("drawer") || []
 
 export const drawerSlice = createSlice({
   name: 'drawer',
@@ -22,6 +23,7 @@ export const drawerSlice = createSlice({
         state.filter((item) => item.id === id).length === 0
       ) {
         state.push(action.payload);
+ 
       }
     },
     removeToSee:(state, action:PayloadAction<number>) => {
