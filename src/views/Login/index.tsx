@@ -9,7 +9,7 @@ type loginForm = {
     password:string
 }
 
-export const LoginView: React.FC<{}> = () => {
+const LoginView: React.FC<{}> = () => {
     const { getSuccess } = useNotification();
 
     const formik = useFormik<loginForm>({
@@ -71,3 +71,6 @@ export const LoginView: React.FC<{}> = () => {
         </Container>
     );
 }
+
+
+export default LoginView;

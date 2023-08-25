@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { HomeView } from "./views/Home/Home";
-import { LoginView } from "./views/Login/Login";
-import { DetailView } from "./views/Detail/Detail";
 import { RouterLayout } from "./common/RouterLayout";
+import { DetailView, HomeView, LoginView } from "./views";
 
 export const AppRouter: React.FC<{}> = () => {
     return (

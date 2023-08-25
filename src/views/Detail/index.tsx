@@ -10,7 +10,7 @@ import { CardReview } from "../../components/CardReview/CardReview";
 import style from "./Detail.module.css"
 import { getRevies } from "../../redux/slices/reviewSlice";
 
-export const DetailView: React.FC<{}> = () => {
+const DetailView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
     const movieSelector = useAppSelector(state => state.movies.movie[0])
     const reviewsSelector = useAppSelector(state => state.reviews.reviews)
@@ -84,3 +84,5 @@ export const DetailView: React.FC<{}> = () => {
         </Box>
     )
 }
+
+export default DetailView
