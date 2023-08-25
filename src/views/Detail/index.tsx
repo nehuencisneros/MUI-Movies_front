@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { CardReview } from "../../components/CardReview/CardReview";
+import { ModalReview } from "../../components/ModalReview/ModalReview";
 import style from "./Detail.module.css"
 import { getRevies } from "../../redux/slices/reviewSlice";
 
@@ -67,9 +68,7 @@ const DetailView: React.FC<{}> = () => {
                                         aria-labelledby="modal-modal-title"
                                         aria-describedby="modal-modal-description"
                                         >
-                                        <Box className={style.modalBox}>
-                                            
-                                        </Box>
+                                        <ModalReview/>
                                     </Modal>
                             </div>
                         </Box>

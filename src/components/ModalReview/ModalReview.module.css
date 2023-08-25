@@ -1,0 +1,11 @@
+.modalBox{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 50%;
+   height: 50%;
+   background-color: #414648;
+   border: 2px solid gray;
+   box-shadow: 24px;
+};
