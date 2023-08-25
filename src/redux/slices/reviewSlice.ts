@@ -59,7 +59,7 @@ export const getRevies = (id:number) => async (dispatch: any) => {
       }
       reviewsArray.push(review)
     })
-    console.log(reviewsArray)
+    
     dispatch(getReviewsSuccess(reviewsArray))
   } catch (error) {
     dispatch(getReviewsError(error as Error));

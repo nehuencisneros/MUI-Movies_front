@@ -62,14 +62,14 @@ const DetailView: React.FC<{}> = () => {
                                             ADD REVIEW
                                         </Typography>
                                 </Button>
-                                    <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                        >
-                                        <ModalReview/>
-                                    </Modal>
+                                <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                    >
+                                    <ModalReview/>
+                                </Modal>
                             </div>
                         </Box>
                         {reviewsSelector.length > 0 &&
