@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ModalReview.module.css"
-import { Box, Button, Rating, TextField } from "@mui/material";
+import { Box, Button, Rating, TextField, Typography } from "@mui/material";
 
 
 export const ModalReview : React.FC<{}> = () => {
@@ -8,14 +8,17 @@ export const ModalReview : React.FC<{}> = () => {
 
    return(
       <Box className={style.modalBox}>
-         <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-               setValue(newValue);
-            }}
-            sx={{border: "solid 1px red", alignSelf: "flex-end"}}
-         />
+         <Box className={style.ratingBox}>
+            <Typography variant="h5">ADD RATE</Typography>
+            <Rating
+               name="simple-controlled"
+               value={value}
+               onChange={(event, newValue) => {
+                  setValue(newValue);
+               }}
+               sx={{border: "solid 1px red", alignSelf: "flex-end"}}
+            />
+         </Box>
          <TextField
             label="Add your review"
             multiline
