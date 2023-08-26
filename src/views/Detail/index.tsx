@@ -65,10 +65,8 @@ const DetailView: React.FC<{}> = () => {
                                 <Modal
                                     open={open}
                                     onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
                                     >
-                                    <ModalReview/>
+                                    <ModalReview />
                                 </Modal>
                             </div>
                         </Box>

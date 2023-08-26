@@ -14,10 +14,29 @@
    border-radius: 2%;
    box-shadow: 24px;
    padding: 1rem; 
-};
+}
 
-.ratingBox{
+.ratingBox {
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: center ; 
    border:solid 1px red
+}
 
+.rating{
+   border: solid 2px blue;
+   font-size: 1.5rem;
+}
 
+@media (max-width: 800px){
+   .rating{
+      font-size: 1.2rem;
+   }
+}
+
+@media (max-width: 450px){
+   .rating{
+      font-size: 0.9rem;
+   }
 }
