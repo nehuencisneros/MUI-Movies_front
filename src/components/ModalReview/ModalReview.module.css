@@ -21,13 +21,15 @@
    width: 100%;
    align-items: center;
    justify-content: center ; 
-   border:solid 1px red
+
 }
 
 .rating{
-   border: solid 2px blue;
+
    font-size: 1.5rem;
 }
+
+
 
 @media (max-width: 800px){
    .rating{

@@ -20,10 +20,17 @@ export const ModalReview : React.FC<{}> = () => {
             />
          </Grid>
          <TextField
-            label="Add your review"
+            id="outlined-multiline-flexible"
+            label="Multiline"
             multiline
-            rows={6}
-            sx={{width:"100%", backgroundColor:"#8c8c8c"}}
+            rows={4}
+            sx={{
+               "& .MuiInputLabel-root ":{color: '#12181b'},
+               "& .MuiInputBase-root": {
+                  '&:after': { borderBottom: "2px solid #12181b" },
+               },
+            }}
+            variant="filled"
          />
          <Button color="error" variant="contained" type="submit">
             Post review
@@ -31,3 +38,7 @@ export const ModalReview : React.FC<{}> = () => {
       </Box>
    )
 }
+
+// { backgroundColor:"#8c8c8c", color: "white"} 
+
+
