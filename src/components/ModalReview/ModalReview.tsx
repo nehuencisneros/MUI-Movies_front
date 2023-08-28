@@ -6,6 +6,8 @@ import { Box, Button, Grid, Rating, Stack, TextField, Typography } from "@mui/ma
 export const ModalReview : React.FC<{}> = () => {
    const [value, setValue] = React.useState<number | null>(2);
 
+   
+
    return(
       <Box className={style.modalBox}>
          <Grid className={style.ratingBox}>

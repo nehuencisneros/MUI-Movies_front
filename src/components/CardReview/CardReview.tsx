@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography, Divider, Box, Rating } from "@mui/material";
-
+import style from "./CardReview.module.css"
 
 interface CardReviewProps {
     id: string,
@@ -12,12 +12,7 @@ interface CardReviewProps {
 export const CardReview: React.FC <CardReviewProps> = ({ id, author, content, rating}) => {
 
     return(
-        <Card sx={{ 
-            mt: 1, 
-            paddingInline: "8px" ,
-            border: "solid 1px grey",
-            backgroundColor: "#414648"
-            }}>
+        <Card className={style.cardConteiner} sx={{ backgroundColor: "#414648"}}>
             <Box display={"flex"} justifyContent={"space-between"} alignItems={"center"} >
                 <Typography variant="h4">
                     {author}
@@ -27,7 +22,7 @@ export const CardReview: React.FC <CardReviewProps> = ({ id, author, content, ra
                         <Typography variant="h5" sx={{marginRight:"0.5rem"}}>
                             Rating: 
                         </Typography>
-                        <Rating size="small" name={`rating-${id}`} value={rating} precision={0.01} readOnly />
+                        <Rating className={style.rating} name={`rating-${id}`} value={rating} precision={0.02} readOnly />
                     </Box>
                         : 
                     <Box display={"flex"} alignItems={"center"}> 
