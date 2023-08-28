@@ -29,8 +29,8 @@
 }
 
 .typo{
+   margin-right: 1rem;
    font-size: 30px;
-   margin-right: 10px;
 }
 
 .postButton{
@@ -47,10 +47,11 @@
 
 @media (max-width: 800px){
    .rating{
-      font-size: 1.2rem;
+      font-size: 1rem;
    }
    .typo{
-      font-size: 22px;
+      font-size: 20px;
+      margin-right: 0.5rem;
    }
    .modalBox {
       width: 55%;
@@ -66,12 +67,12 @@
    }
 }
 
-@media (max-width: 450px){
+@media (max-width: 480px){
    .rating{
       font-size: 1rem;
    }
    .typo{
-      font-size: 15px;
+      font-size: 12px;
       margin-right: 5px;
    }
    .modalBox {
@@ -79,5 +80,9 @@
       width: 60%;
       height: auto;
       top: 30%;
+   }
+   .ratingBox {
+      display: contents;
+      margin-bottom: 0.5rem;
    }
 }

@@ -47,7 +47,7 @@ const DetailView: React.FC<{}> = () => {
                                 movieSelector && <img src={movieSelector.backdrop_path} alt={movieSelector.title} className={style.imagen} />
                             }
                             <Grid item className={style.textMovieGrid}>
-                                <div>
+                                <div style={{marginLeft:"1rem"}}>
                                     <Typography variant="h1" align="center" className={style.title}>
                                         {movieSelector.title}
                                     </Typography>

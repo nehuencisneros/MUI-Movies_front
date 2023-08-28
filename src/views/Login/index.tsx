@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 
 type loginForm = {
     email: string,
-    password:string
+    password: string
 }
 
 const LoginView: React.FC<{}> = () => {
@@ -14,7 +14,7 @@ const LoginView: React.FC<{}> = () => {
 
     const formik = useFormik<loginForm>({
         initialValues: {
-            email:"",
+            email: "",
             password: "",
         },
         validationSchema: LoginValidate,
@@ -22,7 +22,7 @@ const LoginView: React.FC<{}> = () => {
             getSuccess(JSON.stringify(values))
         }
     });
-    
+
     return (
         <Container maxWidth="sm" >
             <Grid
@@ -34,35 +34,35 @@ const LoginView: React.FC<{}> = () => {
             >
                 <Grid item>
                     <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
-                        <Typography variant="h4" sx={{mb: 1 }} >Iniciar sesión</Typography>
+                        <Typography variant="h4" sx={{ mb: 1 }} >Iniciar sesión</Typography>
                         <Box component="form" onSubmit={formik.handleSubmit}>
-                            <TextField 
+                            <TextField
                                 name="email"
-                                fullWidth 
+                                fullWidth
                                 type="text"
                                 margin="normal"
-                                label="Email" 
-                                sx={{ mt: 1, mb: 1 }} 
+                                label="Email"
+                                sx={{ mt: 1, mb: 1 }}
                                 onChange={formik.handleChange}
                                 error={formik.touched.email && Boolean(formik.errors.email)}
                                 helperText={formik.touched.email && formik.errors.email}
                             />
-                            <TextField 
+                            <TextField
                                 name="password"
-                                fullWidth 
+                                fullWidth
                                 type="password"
                                 margin="normal"
-                                label="Password" 
-                                sx={{ mt: 1, mb: 1 }} 
+                                label="Password"
+                                sx={{ mt: 1, mb: 1 }}
                                 onChange={formik.handleChange}
                                 error={formik.touched.password && Boolean(formik.errors.password)}
                                 helperText={formik.touched.password && formik.errors.password}
                             />
-                            <Button 
-                                fullWidth 
+                            <Button
+                                fullWidth
                                 type="submit"
                                 variant="contained"
-                                sx={{mt:1, mb:2}}
+                                sx={{ mt: 1, mb: 2 }}
                             >Iniciar sesión</Button>
                         </Box>
                     </Paper>

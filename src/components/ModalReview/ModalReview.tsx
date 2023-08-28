@@ -1,48 +1,63 @@
 import React from "react";
 import style from "./ModalReview.module.css"
 import { Box, Button, Grid, Rating, Stack, TextField, Typography } from "@mui/material";
+import { number } from "yup";
 
+type reviewForm = {
+   reviewText: string,
+   rating: number | null
+}
 
-export const ModalReview : React.FC<{}> = () => {
-   const [value, setValue] = React.useState<number | null>(2);
+export const ModalReview: React.FC<{}> = () => {
+   const [review, setReview] = React.useState<reviewForm>({
+      reviewText: "",
+      rating: null
+   });
 
-   
+   const handlerChange = (event: any) => {
+      setReview({
+         ...review,
+         [event.target.name]: event.target.value
+      })
+   }
 
-   return(
-      <Box className={style.modalBox}>
+   const handlerSubmit = (event: any) => {
+      event.preventDefault();
+      console.log(review)
+      setReview({
+         reviewText: "",
+         rating: null
+      })
+   }
+
+   return (
+      <form onSubmit={handlerSubmit} className={style.modalBox}>
          <Grid className={style.ratingBox}>
             <Typography className={style.typo}>ADD RATE :</Typography>
             <Rating
-               name="simple-controlled"
-               value={value}
-               onChange={(event, newValue) => {
-                  setValue(newValue);
-               }}
+               name="rating"
+               defaultValue={2}
+               max={10}
+               onChangeActive={handlerChange}
                className={style.rating}
             />
          </Grid>
-         <TextField
-            id="outlined-multiline-flexible"
-            label="Add your review"
-            multiline
-            size="medium"
-            rows={5}
+         <TextField label="Add your review" multiline rows={5} variant="filled" className={style.reviewInput}
             sx={{
-               "& .MuiInputLabel-root":{
-                  color: '#12181b',
-               },
+               "& .MuiInputLabel-root": { color: '#12181b' },
                "& .MuiInputBase-root": {
-                  fontSize:20,
-                  '&:after': { borderBottom: "2px solid #12181b" },
-               },
+                  fontSize: 20,
+                  '&:after': { borderBottom: "2px solid black" }
+               }
             }}
-            className={style.reviewInput}
-            variant="filled"
+            name="reviewText"
+            value={review.reviewText}
+            onChange={handlerChange}
          />
          <Button color="error" variant="contained" type="submit" className={style.postButton}>
             Post review
          </Button>
-      </Box>
+      </form>
    )
 }
 
