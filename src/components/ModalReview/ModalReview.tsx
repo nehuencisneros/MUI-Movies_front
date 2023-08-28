@@ -9,7 +9,7 @@ export const ModalReview : React.FC<{}> = () => {
    return(
       <Box className={style.modalBox}>
          <Grid className={style.ratingBox}>
-            <Typography variant="h5" mr={2}>ADD RATE :</Typography>
+            <Typography className={style.typo}>ADD RATE :</Typography>
             <Rating
                name="simple-controlled"
                value={value}
@@ -21,24 +21,27 @@ export const ModalReview : React.FC<{}> = () => {
          </Grid>
          <TextField
             id="outlined-multiline-flexible"
-            label="Multiline"
+            label="Add your review"
             multiline
-            rows={4}
+            size="medium"
+            rows={5}
             sx={{
-               "& .MuiInputLabel-root ":{color: '#12181b'},
+               "& .MuiInputLabel-root":{
+                  color: '#12181b',
+               },
                "& .MuiInputBase-root": {
+                  fontSize:20,
                   '&:after': { borderBottom: "2px solid #12181b" },
                },
             }}
+            className={style.reviewInput}
             variant="filled"
          />
-         <Button color="error" variant="contained" type="submit">
+         <Button color="error" variant="contained" type="submit" className={style.postButton}>
             Post review
          </Button>
       </Box>
    )
 }
 
-// { backgroundColor:"#8c8c8c", color: "white"} 
-
-
+// '&:after': { color: '#12181b' },

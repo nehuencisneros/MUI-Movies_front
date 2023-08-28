@@ -7,13 +7,13 @@
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   width: 50%;
-   height: 50%;
+   width: 40%;
+   height: 40%;
    background-color: #666666;
    border: 2px solid white;
    border-radius: 2%;
    box-shadow: 24px;
-   padding: 1rem; 
+   padding-block: 2rem; 
 }
 
 .ratingBox {
@@ -21,24 +21,63 @@
    width: 100%;
    align-items: center;
    justify-content: center ; 
-
+   margin-bottom: 1rem;
 }
 
-.rating{
-
-   font-size: 1.5rem;
+.reviewInput{
+   width: 80%;
 }
 
+.typo{
+   font-size: 30px;
+   margin-right: 10px;
+}
 
+.postButton{
+   margin-top: 1rem;
+}
+
+@media (max-width: 1200px){
+   .modalBox {
+      width: 50%;
+      height: 45%;
+      top: 44%;
+   }
+}
 
 @media (max-width: 800px){
    .rating{
       font-size: 1.2rem;
    }
+   .typo{
+      font-size: 22px;
+   }
+   .modalBox {
+      width: 55%;
+      height: 40%;
+      top: 38%;
+      padding-block: 1rem; 
+   }
+   .postButton{
+      margin-top: 0.5rem;
+   }
+   .ratingBox {
+      margin-bottom: 0.5rem;
+   }
 }
 
 @media (max-width: 450px){
    .rating{
-      font-size: 0.9rem;
+      font-size: 1rem;
+   }
+   .typo{
+      font-size: 15px;
+      margin-right: 5px;
+   }
+   .modalBox {
+      padding-block: 0.5rem; 
+      width: 60%;
+      height: auto;
+      top: 30%;
    }
 }
