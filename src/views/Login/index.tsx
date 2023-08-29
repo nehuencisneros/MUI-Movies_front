@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui/material"
+import { Container, Grid } from "@mui/material"
 import { Login } from "../../components/Login/Login";
+import { Register } from "../../components/Register/Register";
 
 
 const LoginView: React.FC<{}> = () => {
@@ -14,7 +15,7 @@ const LoginView: React.FC<{}> = () => {
                 justifyContent="center"
                 sx={{ minHeight: "100vh" }}
             >
-                <Login/>
+                <Register/>
             </Grid>
         </Container>
     );
