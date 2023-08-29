@@ -27,7 +27,6 @@ const DetailView: React.FC<{}> = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
     useEffect(() => {
         dispatch(getReviews(id))
         dispatch(getMovieById(id))

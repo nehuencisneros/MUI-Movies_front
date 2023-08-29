@@ -72,9 +72,8 @@ type reviewForm = {
 }
 
 export const postReviews = (id: number, review: reviewForm) => async (dispatch: any) => {
-  const { rating, reviewText } = review
   try {
-    console.log(id, "mas el texto", reviewText, "mas el rating" , rating)
+    await axios.post("http://localhost:3001/reviews/new/" + id, review)
 
   } catch (error) {
 
