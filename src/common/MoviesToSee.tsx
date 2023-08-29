@@ -12,8 +12,6 @@ interface ReviewProps {
 export const MoviesToSee: React.FC<ReviewProps> = ({open, handleDrawer}) => {
     const toSee = useAppSelector(state => state.drawer)
 
-
-
     return(
         <Drawer anchor={'right'} open={open}>
             <Box sx={{ width: '23em', p: 2 }}>
