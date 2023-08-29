@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ModalReview.module.css"
-import { Box, Button, Grid, Rating, Stack, TextField, Typography } from "@mui/material";
+import { Button, Grid, Rating, TextField, Typography } from "@mui/material";
 import { postReviews } from "../../redux/slices/reviewSlice";
 import { useAppDispatch } from "../../redux/hooks";
 
@@ -9,7 +9,11 @@ type reviewForm = {
    rating: number | null
 }
 
-export const ModalReview: React.FC<{}> = () => {
+type reviewProps = {
+   id:number
+}
+
+export const ModalReview: React.FC<reviewProps> = ({id}) => {
    const dispatch = useAppDispatch()
    const [review, setReview] = React.useState<reviewForm>({
       reviewText: "",
@@ -25,7 +29,7 @@ export const ModalReview: React.FC<{}> = () => {
 
    const handlerSubmit = (event: any) => {
       event.preventDefault();
-      dispatch(postReviews(review.rating, review.reviewText))
+      dispatch(postReviews(id, review))
       setReview({ reviewText: "", rating: null })
    }
 
@@ -37,7 +41,8 @@ export const ModalReview: React.FC<{}> = () => {
                name="rating"
                defaultValue={2}
                max={10}
-               onChangeActive={handlerChange}
+               value={review.rating}
+               onChange={handlerChange}
                className={style.rating}
             />
          </Grid>

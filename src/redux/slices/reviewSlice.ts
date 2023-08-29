@@ -11,24 +11,24 @@ interface ReviewsState {
 
 const initialState: ReviewsState = {
   loading: false,
-  error:"",
+  error: "",
   reviews: [],
 }
 
 export const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
-  reducers:{
-    getReviewsStart: (state:ReviewsState) => {
+  reducers: {
+    getReviewsStart: (state: ReviewsState) => {
       state.loading = true;
       state.error = null;
     },
-    getReviewsError: (state, action:PayloadAction<Error>) => {
+    getReviewsError: (state, action: PayloadAction<Error>) => {
       state.loading = false;
       state.error = action.payload.message;
     },
     getReviewsSuccess: (state, action: PayloadAction<TypeReviews[]>) => {
-      return{
+      return {
         ...state,
         loading: false,
         error: null,
@@ -38,38 +38,45 @@ export const reviewsSlice = createSlice({
   }
 })
 
-export const { getReviewsSuccess, getReviewsError, getReviewsStart} = reviewsSlice.actions
+export const { getReviewsSuccess, getReviewsError, getReviewsStart } = reviewsSlice.actions
 
 export default reviewsSlice.reducer;
 
-export const getReviews = (id:number) => async (dispatch: any) => {
+export const getReviews = (id: number) => async (dispatch: any) => {
   try {
     const reviewsArray: TypeReviews[] = []
 
-    const response = await axios.get("http://localhost:3001/reviews/"+ id)
+    const response = await axios.get("http://localhost:3001/reviews/" + id)
 
     const { data } = response
 
-    data?.map((info:any) => {
-      const review:TypeReviews = {
+    data?.map((info: any) => {
+      const review: TypeReviews = {
         id: info.id,
         author: info.author,
         content: info.content,
-        rating:info.author_details.rating,
+        rating: info.author_details.rating,
       }
       reviewsArray.push(review)
     })
-    
+
     dispatch(getReviewsSuccess(reviewsArray))
   } catch (error) {
     dispatch(getReviewsError(error as Error));
   }
 }
 
-export const postReviews = (rating: number | null, reviewText: string) => async (dispatch: any) => {
+type reviewForm = {
+  reviewText: string,
+  rating: number | null
+}
+
+export const postReviews = (id: number, review: reviewForm) => async (dispatch: any) => {
+  const { rating, reviewText } = review
   try {
-    dispatch()
+    console.log(id, "mas el texto", reviewText, "mas el rating" , rating)
+
   } catch (error) {
-    dispatch()
+
   }
 }

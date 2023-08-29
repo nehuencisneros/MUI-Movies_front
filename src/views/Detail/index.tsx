@@ -66,7 +66,7 @@ const DetailView: React.FC<{}> = () => {
                                     open={open}
                                     onClose={handleClose}
                                     >
-                                    <ModalReview />
+                                    <ModalReview id={id}/>
                                 </Modal>
                             </div>
                         </Box>
