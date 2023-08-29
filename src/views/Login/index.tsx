@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Grid } from "@mui/material"
+import React from "react";
+import { Button, Container, Grid, Typography } from "@mui/material"
 import { Login } from "../../components/Login/Login";
 import { Register } from "../../components/Register/Register";
 
@@ -14,8 +14,15 @@ const LoginView: React.FC<{}> = () => {
                 alignItems="center"
                 justifyContent="center"
                 sx={{ minHeight: "100vh" }}
-            >
-                <Register/>
+                >
+                <Login/>
+                {
+                    <Register/>
+                }
+                <div style={{display: "flex", border:"solid 1px red", marginTop:"1rem", alignItems:"center"}} >
+                    <Typography > If you don't have an account, you can </Typography>
+                    <Button variant="text">Register Here</Button>
+                </div>
             </Grid>
         </Container>
     );
