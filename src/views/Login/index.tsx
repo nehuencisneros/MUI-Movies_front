@@ -3,6 +3,8 @@ import { Box, Button, Container, Grid, Paper, TextField, Typography } from "@mui
 import { useNotification } from "../../context/notification.context";
 import { LoginValidate } from "../../utils/validateForm";
 import { useFormik } from "formik";
+import { useAppDispatch } from "../../redux/hooks";
+import { loginUser } from "../../redux/slices/loginSlice";
 
 type loginForm = {
     email: string,
@@ -11,6 +13,7 @@ type loginForm = {
 
 const LoginView: React.FC<{}> = () => {
     const { getSuccess } = useNotification();
+    const dispatch = useAppDispatch()
 
     const formik = useFormik<loginForm>({
         initialValues: {
@@ -20,6 +23,7 @@ const LoginView: React.FC<{}> = () => {
         validationSchema: LoginValidate,
         onSubmit: (values: loginForm) => {
             getSuccess(JSON.stringify(values))
+            dispatch(loginUser(values))
         }
     });
 
