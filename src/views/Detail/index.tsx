@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Button, Container, Divider, Grid, LinearProgress, Typography, Modal  } from "@mui/material";
+import { Box, Button, Container, Divider, Grid, LinearProgress, Typography, Modal, ModalRoot  } from "@mui/material";
 import { useLoadingBar, useProgressBar } from "../loading";
 import { getMovieById } from "../../redux/slices/moviesSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -9,7 +9,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { CardReview } from "../../components/CardReview/CardReview";
 import { ModalReview } from "../../components/ModalReview/ModalReview";
 import style from "./Detail.module.css"
-import { getRevies } from "../../redux/slices/reviewSlice";
+import { getReviews } from "../../redux/slices/reviewSlice";
 
 const DetailView: React.FC<{}> = () => {
     const dispatch = useAppDispatch()
@@ -29,7 +29,7 @@ const DetailView: React.FC<{}> = () => {
 
 
     useEffect(() => {
-        dispatch(getRevies(id))
+        dispatch(getReviews(id))
         dispatch(getMovieById(id))
     }, [dispatch, id])
 
@@ -57,7 +57,7 @@ const DetailView: React.FC<{}> = () => {
                                 </Typography>
                             </Grid>
                             <div className={style.divBotonFlotante}>
-                                <Button sx={{ backgroundColor: "#fc4b08" }} onClick={handleOpen} color="error" variant="contained">
+                                <Button sx={{ backgroundColor: "#fc4b08"}} onClick={handleOpen} color="error" variant="contained">
                                         <Typography variant="h5" marginY={1}>
                                             ADD REVIEW
                                         </Typography>

@@ -22,7 +22,7 @@ export const CardReview: React.FC <CardReviewProps> = ({ id, author, content, ra
                         <Typography variant="h5" sx={{marginRight:"0.5rem"}}>
                             Rating: 
                         </Typography>
-                        <Rating className={style.rating} name={`rating-${id}`} value={rating} precision={0.02} readOnly />
+                        <Rating className={style.rating} name={`rating-${id}`} value={rating} precision={0.5} readOnly />
                     </Box>
                         : 
                     <Box display={"flex"} alignItems={"center"}> 

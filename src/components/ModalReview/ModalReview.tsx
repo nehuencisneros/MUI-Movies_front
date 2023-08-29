@@ -1,7 +1,8 @@
 import React from "react";
 import style from "./ModalReview.module.css"
 import { Box, Button, Grid, Rating, Stack, TextField, Typography } from "@mui/material";
-import { number } from "yup";
+import { postReviews } from "../../redux/slices/reviewSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 type reviewForm = {
    reviewText: string,
@@ -9,6 +10,7 @@ type reviewForm = {
 }
 
 export const ModalReview: React.FC<{}> = () => {
+   const dispatch = useAppDispatch()
    const [review, setReview] = React.useState<reviewForm>({
       reviewText: "",
       rating: null
@@ -23,11 +25,8 @@ export const ModalReview: React.FC<{}> = () => {
 
    const handlerSubmit = (event: any) => {
       event.preventDefault();
-      console.log(review)
-      setReview({
-         reviewText: "",
-         rating: null
-      })
+      dispatch(postReviews(review.rating, review.reviewText))
+      setReview({ reviewText: "", rating: null })
    }
 
    return (

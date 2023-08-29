@@ -42,7 +42,7 @@ export const { getReviewsSuccess, getReviewsError, getReviewsStart} = reviewsSli
 
 export default reviewsSlice.reducer;
 
-export const getRevies = (id:number) => async (dispatch: any) => {
+export const getReviews = (id:number) => async (dispatch: any) => {
   try {
     const reviewsArray: TypeReviews[] = []
 
@@ -63,5 +63,13 @@ export const getRevies = (id:number) => async (dispatch: any) => {
     dispatch(getReviewsSuccess(reviewsArray))
   } catch (error) {
     dispatch(getReviewsError(error as Error));
+  }
+}
+
+export const postReviews = (rating: number | null, reviewText: string) => async (dispatch: any) => {
+  try {
+    dispatch()
+  } catch (error) {
+    dispatch()
   }
 }
