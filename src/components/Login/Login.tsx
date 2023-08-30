@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { useNotification } from "../../context/notification.context"
 import { useAppDispatch } from "../../redux/hooks";
 import { LoginValidate } from "../../utils/validateForm";
-import { loginUser } from "../../redux/slices/loginSlice";
+import { logInUser } from "../../redux/slices/userSlice";
 
 type loginForm = {
    email: string,
@@ -22,15 +22,15 @@ export const Login: React.FC<{}> = () => {
       },
       validationSchema: LoginValidate,
       onSubmit: (values: loginForm) => {
-         getSuccess(JSON.stringify(values))
-         dispatch(loginUser(values))
+         getSuccess(JSON.stringify("Loading..."))
+         dispatch(logInUser(values))
       }
    });
 
    return (
       <Grid item>
          <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
-            <Typography variant="h4" sx={{ mb: 1 }} >Iniciar sesión</Typography>
+            <Typography variant="h4" sx={{ mb: 1 }} >LOG IN</Typography>
             <Box component="form" onSubmit={formik.handleSubmit}>
                <TextField
                   name="email"
@@ -58,7 +58,7 @@ export const Login: React.FC<{}> = () => {
                   type="submit"
                   variant="contained"
                   sx={{ mt: 1, mb: 2 }}
-               >Iniciar sesión</Button>
+               >log in</Button>
             </Box>
          </Paper>
       </Grid>

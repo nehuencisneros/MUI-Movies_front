@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
-import { loginUser } from "../../redux/slices/loginSlice";
+import { signInUser } from "../../redux/slices/userSlice";
 import { useFormik } from "formik";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNotification } from "../../context/notification.context";
@@ -24,15 +24,15 @@ export const Register: React.FC<{}> = () => {
       },
       validationSchema: SingInValidate,
       onSubmit: (values: SingInForm) => {
-         getSuccess(JSON.stringify(values))
-         dispatch(loginUser(values))
+         getSuccess(JSON.stringify("User Registered"))
+         dispatch(signInUser(values))
       }
    });
 
    return (
       <Grid item>
          <Paper sx={{ padding: "1.2em", borderRadius: "0.5em" }}>
-            <Typography variant="h4" sx={{ mb: 1 }} >Iniciar sesión</Typography>
+            <Typography variant="h4" sx={{ mb: 1 }} >REGISTER</Typography>
             <Box component="form" onSubmit={formik.handleSubmit}>
                <TextField
                   name="name"
@@ -71,7 +71,7 @@ export const Register: React.FC<{}> = () => {
                   type="submit"
                   variant="contained"
                   sx={{ mt: 1, mb: 2 }}
-               >Iniciar sesión</Button>
+               >SIGN IN</Button>
             </Box>
          </Paper>
       </Grid>

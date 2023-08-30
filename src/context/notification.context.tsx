@@ -8,7 +8,7 @@ type ContextProps = {
 }
 const NotificationContext = React.createContext <ContextProps | null>(null);
 
-export const NotificationProvider: React.FC<{ children: JSX.Element}> = ({ children, }) => {
+export const NotificationProvider: React.FC<{ children: JSX.Element}> = ({ children }) => {
     const [msg, setMsg] = useState("")
     const [open, setOpen] = useState(false)
     const [severity, setSeverity] = useState<AlertColor | undefined>(
